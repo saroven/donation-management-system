@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class HomeController extends Controller
 {
     /**
@@ -17,13 +19,24 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function index()
+    {
+        return view('home');
+    }
+
     public function showHome()
     {
         return view('public.home');
-    }public function index()
+    }
+    public function showAbout()
     {
-        return view('dashboard');
+        return view('public.home');
+    }
+
+    public function showDonatePage()
+    {
+        return view('public.donate');
     }
 }
