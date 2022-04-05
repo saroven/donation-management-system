@@ -1,5 +1,4 @@
 @extends('public.layouts.master')
-{{--@section('active', 'current')--}}
 @section('content')
 
          <!-- Main Slider Start -->

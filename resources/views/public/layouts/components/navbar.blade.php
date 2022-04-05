@@ -8,7 +8,7 @@
                            class="main-nav__left main-nav__left-three float-left"
                         >
                            <div class="logo">
-                              <a href="index.html"
+                              <a href="{{ 'home' }}"
                                  ><img
                                     src="{{ asset('assets/images/resources/logo.png') }}"
                                     alt=""
@@ -25,16 +25,18 @@
                               <li id="home">
                                  <a href="{{ route('home') }}">Home</a>
                               </li>
-
-                              <li>
-                                 <a href="#">Donations</a>
+                              <li id="about">
+                                 <a href="{{ route('about') }}">About</a>
                               </li>
-                              <li>
-                                 <a href="#">About</a>
+                              <li id="contact">
+                                 <a href="{{ route('contact') }}">Contact</a>
                               </li>
-                              <li>
-                                 <a href="#">Contact</a>
-                              </li>
+                               <li id="donations">
+                                 <a href="{{ route('donations') }}">Donations</a>
+                               </li>
+                               <li id="gallery">
+                                 <a href="#">Gallery</a>
+                               </li>
                            </ul>
                         </div>
                         <!-- /.navbar-collapse -->
@@ -45,18 +47,35 @@
                               >
                            </div>
                            <div class="main-nav__right__icon-cart-box">
-                              <a href="#">
-                                 <span class="fa fa-user"></span>
-                                 <span class="fas fa-sign-in-alt"></span>
-                              </a>
-                           </div>
-                           <div class="main-nav__right__icon-search-box">
-                              <a
-                                 href="#"
-                                 class="main-nav__search search-popup__toggler"
-                              >
-                                 <i class="icon-magnifying-glass"></i>
-                              </a>
+                              <div class="dropdown">
+                                  <span class="fa fa-user text-dark" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      @guest
+                                        @if (Route::has('login'))
+
+                                            <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                        @endif
+                                        @if (Route::has('register'))
+                                            <hr class="dropdown-divider" />
+                                            <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        @endif
+                                    @else
+                                        <a class="dropdown-item" href="#">Profile</a>
+                                        <a class="dropdown-item" href="#">Change Password</a>
+                                        <hr class="dropdown-divider" />
+                                        <a class="dropdown-item"
+                                           href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                           document.getElementById('logout-form').submit();">
+                                           {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                      @endguest
+                                  </div>
+                              </div>
+
                            </div>
                         </div>
                      </div>

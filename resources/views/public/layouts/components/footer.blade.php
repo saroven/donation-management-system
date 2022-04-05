@@ -14,7 +14,7 @@
                      >
                         <div class="footer-widget__column footer-widget__about">
                            <div class="footer-widget__logo">
-                              <a href="index.html"
+                              <a href="{{ route('home') }}"
                                  ><img
                                     src="./assets/images/resources/footer-logo.png"
                                     alt=""
@@ -51,14 +51,13 @@
                            >
                               <li><a href="#">Donate</a></li>
                               <li><a href="#">Campaigns</a></li>
-                              <li><a href="#">Fundraise</a></li>
-                              <li><a href="#">Volunteers</a></li>
+                              <li><a href="#">Donors</a></li>
                               <li><a href="#">Sponsors</a></li>
                            </ul>
                            <ul
                               class="footer-widget__explore-list footer-widget__explore-list-two list-unstyled"
                            >
-                              <li><a href="#">Fundraising</a></li>
+                              <li><a href="#">Donations</a></li>
                               <li><a href="#">Contact</a></li>
                               <li><a href="#">Help</a></li>
                               <li><a href="#">Faqs</a></li>
@@ -124,7 +123,7 @@
                               elit sed do eiusmod tempor incididunt ut labore.
                            </p>
                            <div class="footer-widget__support-btn">
-                              <a href="campaigns.html"
+                              <a href="{{ route('donate') }}"
                                  ><i class="fas fa-heart"></i>Donate</a
                               >
                            </div>
@@ -181,7 +180,7 @@
                <i class="fa fa-times"></i>
             </span>
             <div class="logo-box">
-               <a href="index.html" aria-label="logo image">
+               <a href="{{ route('home') }}" aria-label="logo image">
                   <img src="./assets/images/resources/logo-2.png" alt="" />
                </a>
             </div>
