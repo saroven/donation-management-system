@@ -17,6 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('gender')->nullable();
+            $table->string('address')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('profile_pic')->nullable();
+            $table->integer('user_type')->default(1)->comment("1=admin;2=ngo;3=donor/receiver");
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -131,7 +131,7 @@
                               <div class="feature-one__icon-text-box">
                                  <h4>
                                     Become <br />
-                                    Volunteer
+                                    Donor
                                  </h4>
                               </div>
                            </div>
