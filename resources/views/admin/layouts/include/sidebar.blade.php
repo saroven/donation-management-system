@@ -24,6 +24,18 @@
                                     <a class="nav-link" id="manageUser" href="{{ route('users') }}">Manage User</a>
                                 </nav>
                             </div>
+
+                            <a id="donations" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseDonations" aria-expanded="false" aria-controls="collapseDonations">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+                                Donation
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseDonations" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" id="donationTypes" href="{{ route('donationTypes') }}">Donation Types</a>
+                                    <a class="nav-link" id="viewDonations" href="{{ route('donations') }}">View Donations</a>
+                                </nav>
+                            </div>
                             <div class="sb-sidenav-menu-heading">Controls</div>
                             <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
