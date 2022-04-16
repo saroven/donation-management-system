@@ -81,6 +81,32 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="deleteTypeModal" tabindex="-1" role="dialog" aria-labelledby="deleteTypeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteTypeModalLabel">Delete !</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="#" id="deleteTypeModalForm">
+                <div id="updateFormErrorMessage"></div>
+              <input id="deleteTypeId" type="hidden" name="id" >
+              Are you sure ?
+
+        </div>
+        <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" id="delete" class="btn btn-danger">Yes, I'm Sure</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+
 @endsection
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
@@ -202,6 +228,12 @@
                         }
                     }
                 });
+            });
+            $(document).on('click', '.deleteBtn', function(e){
+                $("#deleteTypeModal").modal('show');
+            });
+            $(document).on('click', '#delete', function(e){
+                // alert('delerted');
             });
         });
 
