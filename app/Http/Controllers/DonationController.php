@@ -55,4 +55,53 @@ class DonationController extends Controller
             ]);
        }
     }
+
+    public function editType($id)
+    {
+        $types = DonationTypes::find($id);
+
+        if($types){
+            return response()->json([
+                'status' => 200,
+                'types' => $types
+            ]);
+        }else{
+            return response()->json([
+                'status' => 400,
+                'message' => "Student Not found"
+            ]);
+        }
+    }
+
+    public function updateType(Request $request, $id)
+    {
+        $validation = Validator::make($request->all(), [
+            'name' => 'required|string'
+        ]);
+
+       if($validation->fails()){
+            return response()->json([
+                'status' => 400,
+                'errors' => $validation->messages(),
+            ]);
+       }else{
+            $type = DonationTypes::find($id);
+            if($type){
+                $type->name = $request->name;
+                $type->update();
+
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Updated Successful',
+                ]);
+
+            }else{
+                return response()->json([
+                    'status' => 400,
+                    'message' => "Student Not found"
+                ]);
+            }
+       }
+
+    }
 }

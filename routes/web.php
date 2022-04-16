@@ -29,6 +29,8 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
     Route::get('/donation/types/fetch', 'fetchDonationTypes')->name('fetchTypes');
     Route::get('/donation/type/add', 'showDonationTypes')->name('addDonationType');
     Route::post('/donation/type/add', 'addDonationType')->name('insertDonationType');
+    Route::get('/donation/type/edit/{id}', 'editType')->name('editType');
+    Route::put('/donation/type/update/{id}', 'updateType')->name('updateType');
 
     });
 });
