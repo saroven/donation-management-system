@@ -100,7 +100,7 @@
         </div>
         <div class="modal-footer">
                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" id="delete" class="btn btn-danger">Yes, I'm Sure</button>
+              <button type="submit" id="delete" class="btn btn-danger">Yes, Delete</button>
           </form>
         </div>
       </div>
@@ -231,9 +231,39 @@
             });
             $(document).on('click', '.deleteBtn', function(e){
                 $("#deleteTypeModal").modal('show');
+                $("#deleteTypeId").val($(this).val());
             });
             $(document).on('click', '#delete', function(e){
-                // alert('delerted');
+                 e.preventDefault();
+                let typeId = $("#deleteTypeId").val();
+                let url = "{{ route('deleteType', ":id") }}";
+                url = url.replace(':id', typeId);
+
+                console.log(url);
+                 $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.status == 400) {
+                            $("#deleteTypeModal").modal('hide');
+                            $("#successMessage").html("");
+                            $("#successMessage").addClass("alert alert-danger");
+                            $("#successMessage").text(response.message);
+                        }else{
+                            getDonationTypes();
+                            $("#deleteTypeModal").modal('hide');
+                            $("#successMessage").html("");
+                            $("#successMessage").addClass("alert alert-success");
+                            $("#successMessage").text(response.message);
+                        }
+                    }
+                });
             });
         });
 

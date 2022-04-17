@@ -31,6 +31,7 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
     Route::post('/donation/type/add', 'addDonationType')->name('insertDonationType');
     Route::get('/donation/type/edit/{id}', 'editType')->name('editType');
     Route::put('/donation/type/update/{id}', 'updateType')->name('updateType');
+    Route::delete('/donation/type/delete/{id}', 'deleteType')->name('deleteType');
 
     });
 });

@@ -104,4 +104,23 @@ class DonationController extends Controller
        }
 
     }
+
+
+    public function deleteType($id)
+    {
+            $type = DonationTypes::find($id);
+            if($type){
+                $type->delete();
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Deleted Successful',
+                ]);
+
+            }else{
+                return response()->json([
+                    'status' => 400,
+                    'message' => "Student Not found"
+                ]);
+            }
+       }
 }
