@@ -11,8 +11,9 @@
             <div class="row">
                  <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-table me-1"></i>
-                        Donation Types <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#addType">Add Type</a>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addType">
+                      Add Type
+                    </button>
                     </div>
                     <div class="card-body">
                         <table id="datatablesSimple">
@@ -32,80 +33,69 @@
             </div>
         </div>
     </main>
-<div class="modal fade" id="addType" tabindex="-1" role="dialog" aria-labelledby="addTypeLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+
+
+<div class="modal fade" id="addType" tabindex="-1" aria-labelledby="addTypeLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addTypeLabel">Add Type</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action="#" id="addTypeForm">
+        <form action="#" id="addTypeForm">
               <div id="addFormErrorMessage"></div>
               <input id="name" type="text" class="form-control" name="name" placeholder="name">
-
+            </form>
       </div>
       <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" id="save" class="btn btn-primary">Save</button>
-        </form>
-      </div>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" id="save" class="btn btn-primary">Save</button>      </div>
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="editTypeModal" tabindex="-1" role="dialog" aria-labelledby="editTypeModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editTypeModalLabel">Edit Type</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+ <div class="modal fade" id="editTypeModal" tabindex="-1" aria-labelledby="editTypeModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editTypeModalLabel">Edit Type</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+               <form action="#" id="editTypeModalForm">
+                   <div id="updateFormErrorMessage"></div>
+                   <input id="editTypeId" type="hidden" name="id" >
+                   <input id="editTypeName" type="text" class="form-control" name="name" placeholder="name">
+               </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" id="update" class="btn btn-primary">Update</button>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
-            <form action="#" id="editTypeModalForm">
-                <div id="updateFormErrorMessage"></div>
-              <input id="editTypeId" type="hidden" name="id" >
-                <input id="editTypeName" type="text" class="form-control" name="name" placeholder="name">
-
-        </div>
-        <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" id="update" class="btn btn-primary">Update</button>
-          </form>
-        </div>
-      </div>
     </div>
-</div>
-
-
-<div class="modal fade" id="deleteTypeModal" tabindex="-1" role="dialog" aria-labelledby="deleteTypeModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteTypeModalLabel">Delete !</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+<div class="modal fade" id="deleteTypeModal" tabindex="-1" aria-labelledby="deleteTypeModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteTypeModalLabel">Delete !</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="#" id="deleteTypeModalForm">
+                    <div id="updateFormErrorMessage"></div>
+                    <input id="deleteTypeId" type="hidden" name="id" >
+                     Are you sure ?
+               </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" id="delete" class="btn btn-danger">Yes, Delete</button>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
-            <form action="#" id="deleteTypeModalForm">
-                <div id="updateFormErrorMessage"></div>
-              <input id="deleteTypeId" type="hidden" name="id" >
-              Are you sure ?
-
-        </div>
-        <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" id="delete" class="btn btn-danger">Yes, Delete</button>
-          </form>
-        </div>
-      </div>
     </div>
-</div>
 
 @endsection
 @push('js')
@@ -115,7 +105,7 @@
     <script>
         document.getElementById('donations').classList.add('active');
         document.getElementById('collapseDonations').classList.add('show');
-        document.getElementById('donations').classList.remove('collapsed');
+        // document.getElementById('donations').classList.remove('collapsed');
         document.getElementById('donationTypes').classList.add('active');
 
 
