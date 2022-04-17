@@ -11,7 +11,7 @@
             <div class="row">
                  <div class="card mb-4">
                     <div class="card-header">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#adduserModal">
+                    <button type="button" class="addUser btn btn-primary" data-bs-toggle="modal" data-bs-target="#adduserModal">
                       Add Users
                     </button>
                     </div>
@@ -72,12 +72,48 @@
       <div class="modal-body">
         <form action="#" id="adduserModalForm">
               <div id="addFormErrorMessage"></div>
-              <input id="name" type="text" class="form-control" name="name" placeholder="name">
+            <div class="form-group">
+                <label for="name">Name: </label>
+                <input id="addUserName" type="text" class="form-control" name="name" placeholder="name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email: </label>
+                <input id="addUserEmail" type="email" class="form-control" name="email" placeholder="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password: </label>
+                <input id="addUserPassword" type="password" class="form-control" name="password" placeholder="password">
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender: </label>
+                <select name="gender" id="addUserGender" class="form-control">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+             <div class="form-group">
+                <label for="address">Address: </label>
+                <input id="addUserAddress" type="text" class="form-control" name="address" placeholder="Address">
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile Number: </label>
+                <input id="addUserMobile" type="text" class="form-control" name="mobile" placeholder="Mobile Number">
+            </div>
+            <div class="form-group">
+                <label for="userType">User Type: </label>
+                <select name="userType" id="addUserType" class="form-control">
+                    <option value="1">Admin</option>
+                    <option value="2">NGO</option>
+                    <option value="3" selected>Donor/Receiver</option>
+                </select>
+            </div>
             </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" id="save" class="btn btn-primary">Save</button>      </div>
+        <button type="submit" id="save" class="btn btn-primary">Save</button>
+      </div>
     </div>
   </div>
 </div>
@@ -185,35 +221,57 @@
                     }
                 });
             });
-            {{-- $("#save").on('click', function (e) {--}}
-            {{--    e.preventDefault();--}}
-            {{--    $.ajax({--}}
-            {{--        type: "POST",--}}
-            {{--        url: "{{ route('addDonationUser') }}",--}}
-            {{--        data: {--}}
-            {{--            name: $("#name").val(),--}}
-            {{--            _token: '{{ csrf_token() }}',--}}
-            {{--        },--}}
-            {{--        dataType: "json",--}}
-            {{--        success: function (response) {--}}
-            {{--            if (response.status == 400) {--}}
-            {{--                $("#addFormErrorMessage").html("");--}}
-            {{--                $("#addFormErrorMessage").addClass("alert alert-danger");--}}
-            {{--                $.each(response.errors, function (key, error) {--}}
-            {{--                    $("#addFormErrorMessage").append('<li>'+error+'</li>');--}}
-            {{--                });--}}
-            {{--            }else{--}}
-            {{--                $("#successMessage").html("");--}}
-            {{--                $("#successMessage").addClass("alert alert-success");--}}
-            {{--                $("#successMessage").text(response.message);--}}
-            {{--                $("#adduserModal").modal("hide");--}}
-            {{--                $("#adduserModal").find("input").val("");--}}
 
-            {{--                getUsers();--}}
-            {{--            }--}}
-            {{--        }--}}
-            {{--    });--}}
-            {{--});--}}
+            $(document).on('click', '.addUser',function (e){
+                e.preventDefault();
+                $("#addFormErrorMessage").html('');
+                $("#addFormErrorMessage").removeClass('alert alert-danger');
+            });
+
+             $("#save").on('click', function (e) {
+                e.preventDefault();
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('addUser') }}",
+                    data: {
+                        name: $("#addUserName").val(),
+                        email: $("#addUserEmail").val(),
+                        password: $("#addUserPassword").val(),
+                        gender: $("#addUserGender").val(),
+                        address: $("#addUserAddress").val(),
+                        mobile: $("#addUserMobile").val(),
+                        user_type: $("#addUserType").val(),
+                    },
+                    dataType: "json",
+                    success: function (response) {
+
+                        if (response.status == 400) {
+                            $("#addFormErrorMessage").html("");
+                            $("#addFormErrorMessage").addClass("alert alert-danger");
+                            $.each(response.errors, function (key, error) {
+                                $("#addFormErrorMessage").append('<li>'+error+'</li>');
+                            });
+                        }else{
+                            $("#successMessage").html("");
+                            $("#successMessage").addClass("alert alert-success");
+                            $("#successMessage").text(response.message);
+                            $("#adduserModal").modal("hide");
+                            $("#adduserModal").find("input").val("");
+
+                            getUsers();
+                        }
+                    }
+                });
+            });
+
+
             {{--$(document).on('click', '.editBtn', function (e) {--}}
             {{--    e.preventDefault();--}}
             {{--    let typeId = $(this).val();--}}

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -40,8 +42,40 @@ class UsersController extends Controller
        }
     }
 
-    public function addUser()
+    public function addUser(Request $request)
     {
-        return view('admin.users.add');
+        $userValidation = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6'],
+            'gender' => ['required', 'string'],
+            'address' => ['required', 'string', 'min:3'],
+            'mobile' => ['required', 'string', 'min:10'],
+            'user_type' => ['required', 'string'],
+        ]);
+
+       if($userValidation->fails()){
+            return response()->json([
+                'status' => 400,
+                'errors' => $userValidation->messages(),
+            ]);
+       }else{
+            $user = new User();
+
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->gender = $request->gender;
+            $user->address = $request->address;
+            $user->mobile = $request->mobile;
+            $user->user_type = $request->user_type;
+
+            $user->save();
+
+            return response()->json([
+                'status' => 200,
+                'message' => 'Added Successful',
+            ]);
+       }
     }
 }

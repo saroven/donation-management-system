@@ -40,6 +40,7 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
         Route::get('/users', 'showUsers')->name('users');
         Route::get('/fetch-users', 'fetchUsers')->name('fetchUsers');
         Route::get('/user/{id}', 'getSingleUser')->name('getSingleUser');
+        Route::post('/addUser', 'addUser')->name('addUser');
     });
 });
 
