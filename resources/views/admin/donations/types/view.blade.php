@@ -113,6 +113,10 @@
     <script src="{{ asset('admin/js/datatables-simple-demo.js') }}"></script>
 
     <script>
+        document.getElementById('donations').classList.add('active');
+        document.getElementById('collapseDonations').classList.add('show');
+        document.getElementById('donations').classList.remove('collapsed');
+        document.getElementById('donationTypes').classList.add('active');
 
 
         $(document).ready(function () {
@@ -266,8 +270,6 @@
                 });
             });
         });
-
-
 
     </script>
 @endpush
