@@ -117,28 +117,64 @@
     </div>
   </div>
 </div>
- <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-               <form action="#" id="editUserModalForm">
-                   <div id="updateFormErrorMessage"></div>
-                   <input id="editUserId" type="hidden" name="id" >
-                   <input id="editUserName" type="text" class="form-control" name="name" placeholder="name">
-               </form>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" id="update" class="btn btn-primary">Update</button>
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="#" id="editUserModalForm">
+              <div id="editFormErrorMessage"></div>
+            <div class="form-group">
+                <label for="name">Name: </label>
+                <input id="editUserId" type="hidden"  name="userId">
+                <input id="editUserName" type="text" class="form-control" name="name" placeholder="name">
             </div>
-          </div>
-        </div>
+            <div class="form-group">
+                <label for="email">Email: </label>
+                <input id="editUserEmail" type="email" class="form-control" name="email" placeholder="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password: </label>
+                <input id="editUserPassword" type="password" class="form-control" name="password" placeholder="password">
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender: </label>
+                <select name="gender" id="editUserGender" class="form-control">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+             <div class="form-group">
+                <label for="address">Address: </label>
+                <input id="editUserAddress" type="text" class="form-control" name="address" placeholder="Address">
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile Number: </label>
+                <input id="editUserMobile" type="text" class="form-control" name="mobile" placeholder="Mobile Number">
+            </div>
+            <div class="form-group">
+                <label for="userType">User Type: </label>
+                <select name="userType" id="editUserType" class="form-control">
+                    <option value="1">Admin</option>
+                    <option value="2">NGO</option>
+                    <option value="3" selected>Donor/Receiver</option>
+                </select>
+            </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" id="update" class="btn btn-primary">Update</button>
+      </div>
     </div>
-<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+  </div>
+</div>
+
+    <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -271,70 +307,91 @@
                 });
             });
 
+            $(document).on('click', '.editBtn', function (e) {
+                e.preventDefault();
+                let id = $(this).val();
+                let url = "{{ route('editUser', ":id") }}";
+                url = url.replace(':id', id);
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.status == 400) {
+                            $("#successMessage").html("");
+                            $("#successMessage").addClass("alert alert-danger");
+                            $("#successMessage").text(response.message);
+                        }else{
+                            $("#editUserModal").modal('show');
+                            $("#editFormErrorMessage").html('');
+                            $("#editFormErrorMessage").removeClass('alert alert-danger');
+                            $("#editUserId").val(response.user.id);
+                            $("#editUserName").val(response.user.name);
+                            $("#editUserEmail").val(response.user.email);
+                            $("#editUserPassword").val();
+                            $("#editUserGender").val();
+                            $("#editUserAddress").val(response.user.address);
+                            $("#editUserMobile").val(response.user.mobile);
+                            // $("#editUserType").html('');
+                            // let userType = response.user.type;
+                            // let selectOptions = '<option value="1"'+ (userType == 2) ? "selected" : "" +'>Admin</option>\
+                            //                     <option value="2"'+ (userType == 2) ? "selected" : "" +'>NGO</option>\
+                            //                     <option value="3"'+ (userType == 3) ? "selected" : "" +'>Donor/Receiver</option>';
+                            // $("#editUserType").append(selectOptions);
+                            // console.log(selectOptions);
+                        }
+                    }
+                });
+            });
 
-            {{--$(document).on('click', '.editBtn', function (e) {--}}
-            {{--    e.preventDefault();--}}
-            {{--    let typeId = $(this).val();--}}
-            {{--    let url = "{{ route('editUser', ":id") }}";--}}
-            {{--    url = url.replace(':id', typeId);--}}
-            {{--    $.ajax({--}}
-            {{--        type: "GET",--}}
-            {{--        url: url,--}}
-            {{--        dataType: "json",--}}
-            {{--        success: function (response) {--}}
-            {{--            if (response.status == 400) {--}}
-            {{--                $("#successMessage").html("");--}}
-            {{--                $("#successMessage").addClass("alert alert-danger");--}}
-            {{--                $("#successMessage").text(response.message);--}}
-            {{--            }else{--}}
-            {{--                $("#editUserModal").modal('show');--}}
-            {{--                $("#editUserId").val(response.types.id);--}}
-            {{--                $("#editUserName").val(response.types.name);--}}
-            {{--            }--}}
-            {{--        }--}}
-            {{--    });--}}
-            {{--});--}}
-            {{--$(document).on('click', '#update', function(e){--}}
-            {{--    e.preventDefault();--}}
-            {{--    let id =  $("#editUserId").val();--}}
-            {{--    let url = "{{ route('updateUser', ":id") }}";--}}
-            {{--    url = url.replace(':id', id);--}}
+            $(document).on('click', '#update', function(e){
+                e.preventDefault();
 
-            {{--    $.ajaxSetup({--}}
-            {{--        headers: {--}}
-            {{--            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-            {{--        }--}}
-            {{--    });--}}
+                let id =  $("#editUserId").val();
+                let url = "{{ route('updateUser', ":id") }}";
+                url = url.replace(':id', id);
 
-            {{--    $.ajax({--}}
-            {{--        type: "PUT",--}}
-            {{--        url: url,--}}
-            {{--        data: {--}}
-            {{--            name: $("#editUserName").val(),--}}
-            {{--        },--}}
-            {{--        dataType: "json",--}}
-            {{--        success: function (response) {--}}
-            {{--            if (response.status == 400) {--}}
-            {{--                $("#updateFormErrorMessage").html("");--}}
-            {{--                $("#updateFormErrorMessage").addClass("alert alert-danger");--}}
-            {{--                $.each(response.errors, function (key, error) {--}}
-            {{--                    $("#updateFormErrorMessage").append('<li>'+error+'</li>');--}}
-            {{--                });--}}
-            {{--            }else if(response.status == 400){--}}
-            {{--                $("#successMessage").html("");--}}
-            {{--                $("#successMessage").addClass("alert alert-danger");--}}
-            {{--                $("#successMessage").text(response.message);--}}
-            {{--            }else{--}}
-            {{--                $("#successMessage").html("");--}}
-            {{--                $("#successMessage").addClass("alert alert-success");--}}
-            {{--                $("#successMessage").text(response.message);--}}
-            {{--                $("#editUserModal").modal("hide");--}}
-            {{--                $("#editUserModal").find("input").val("");--}}
-            {{--                getUsers();--}}
-            {{--            }--}}
-            {{--        }--}}
-            {{--    });--}}
-            {{--});--}}
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    type: "PUT",
+                    url: url,
+                    data: {
+                        name: $("#editUserName").val(),
+                        email: $("#editUserEmail").val(),
+                        password: $("#editUserPassword").val(),
+                        gender: $("#editUserGender").val(),
+                        address: $("#editUserAddress").val(),
+                        mobile: $("#editUserMobile").val(),
+                        user_type: $("#editUserType").val(),
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.status == 400) {
+                            $("#editFormErrorMessage").html("");
+                            $("#editFormErrorMessage").addClass("alert alert-danger");
+                            $.each(response.errors, function (key, error) {
+                                $("#editFormErrorMessage").append('<li>'+error+'</li>');
+                            });
+                        }else if(response.status == 400){
+                            $("#successMessage").html("");
+                            $("#successMessage").addClass("alert alert-danger");
+                            $("#successMessage").text(response.message);
+                        }else{
+                            $("#successMessage").html("");
+                            $("#successMessage").addClass("alert alert-success");
+                            $("#successMessage").text(response.message);
+                            $("#editUserModal").modal("hide");
+                            $("#editUserModal").find("input").val("");
+                            getUsers();
+                        }
+                    }
+                });
+            });
             // $(document).on('click', '.deleteBtn', function(e){
             //     $("#deleteUserModal").modal('show');
             //     $("#deleteUserId").val($(this).val());

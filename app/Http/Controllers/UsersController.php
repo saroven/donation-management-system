@@ -78,4 +78,63 @@ class UsersController extends Controller
             ]);
        }
     }
+
+    public function editUser($id)
+    {
+         $user = User::find($id);
+
+        if($user){
+            return response()->json([
+                'status' => 200,
+                'user' => $user
+            ]);
+        }else{
+            return response()->json([
+                'status' => 400,
+                'message' => "User Not found"
+            ]);
+        }
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $userValidation = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+             'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'password' => ['required', 'string', 'min:6'],
+            'gender' => ['required', 'string'],
+            'address' => ['required', 'string', 'min:3'],
+            'mobile' => ['required', 'string', 'min:10'],
+            'user_type' => ['required', 'string'],
+        ]);
+
+       if($userValidation->fails()){
+            return response()->json([
+                'status' => 400,
+                'errors' => $userValidation->messages(),
+            ]);
+       }else{
+            $user = User::find($id);
+            if($user){
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+                $user->gender = $request->gender;
+                $user->address = $request->address;
+                $user->mobile = $request->mobile;
+                $user->user_type = $request->user_type;
+                $user->update();
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Updated Successful',
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 400,
+                    'message' => "Student Not found"
+                ]);
+            }
+       }
+
+    }
 }

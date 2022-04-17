@@ -41,6 +41,8 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
         Route::get('/fetch-users', 'fetchUsers')->name('fetchUsers');
         Route::get('/user/{id}', 'getSingleUser')->name('getSingleUser');
         Route::post('/addUser', 'addUser')->name('addUser');
+        Route::get('/editUser/{id}', 'editUser')->name('editUser');
+        Route::put('/updateUser/{id}', 'updateUser')->name('updateUser');
     });
 });
 
