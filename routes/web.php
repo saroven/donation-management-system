@@ -43,6 +43,7 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
         Route::post('/addUser', 'addUser')->name('addUser');
         Route::get('/editUser/{id}', 'editUser')->name('editUser');
         Route::put('/updateUser/{id}', 'updateUser')->name('updateUser');
+        Route::delete('/deleteUser/{id}', 'deleteUser')->name('deleteUser');
     });
 });
 

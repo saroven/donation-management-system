@@ -183,7 +183,7 @@
               </div>
               <div class="modal-body">
                 <form action="#" id="deleteUserModalForm">
-                    <div id="updateFormErrorMessage"></div>
+                    <div id="deleteErrorMessage"></div>
                     <input id="deleteUserId" type="hidden" name="id" >
                      Are you sure ?
                </form>
@@ -392,42 +392,42 @@
                     }
                 });
             });
-            // $(document).on('click', '.deleteBtn', function(e){
-            //     $("#deleteUserModal").modal('show');
-            //     $("#deleteUserId").val($(this).val());
-            // });
-            {{--$(document).on('click', '#delete', function(e){--}}
-            {{--     e.preventDefault();--}}
-            {{--    let typeId = $("#deleteUserId").val();--}}
-            {{--    let url = "{{ route('deleteUser', ":id") }}";--}}
-            {{--    url = url.replace(':id', typeId);--}}
 
-            {{--    console.log(url);--}}
-            {{--     $.ajaxSetup({--}}
-            {{--        headers: {--}}
-            {{--            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-            {{--        }--}}
-            {{--    });--}}
-            {{--    $.ajax({--}}
-            {{--        type: "DELETE",--}}
-            {{--        url: url,--}}
-            {{--        dataType: "json",--}}
-            {{--        success: function (response) {--}}
-            {{--            if (response.status == 400) {--}}
-            {{--                $("#deleteUserModal").modal('hide');--}}
-            {{--                $("#successMessage").html("");--}}
-            {{--                $("#successMessage").addClass("alert alert-danger");--}}
-            {{--                $("#successMessage").text(response.message);--}}
-            {{--            }else{--}}
-            {{--                getUsers();--}}
-            {{--                $("#deleteUserModal").modal('hide');--}}
-            {{--                $("#successMessage").html("");--}}
-            {{--                $("#successMessage").addClass("alert alert-success");--}}
-            {{--                $("#successMessage").text(response.message);--}}
-            {{--            }--}}
-            {{--        }--}}
-            {{--    });--}}
-            {{--});--}}
+            $(document).on('click', '.deleteBtn', function(e){
+                $("#deleteUserModal").modal('show');
+                $("#deleteUserId").val($(this).val());
+            });
+
+            $(document).on('click', '#delete', function(e){
+                 e.preventDefault();
+                let id = $("#deleteUserId").val();
+                let url = "{{ route('deleteUser', ":id") }}";
+                url = url.replace(':id', id);
+                 $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.status == 400) {
+                            $("#deleteUserModal").modal('hide');
+                            $("#successMessage").html("");
+                            $("#successMessage").addClass("alert alert-danger");
+                            $("#successMessage").text(response.message);
+                        }else{
+                            getUsers();
+                            $("#deleteUserModal").modal('hide');
+                            $("#successMessage").html("");
+                            $("#successMessage").addClass("alert alert-success");
+                            $("#successMessage").text(response.message);
+                        }
+                    }
+                });
+            });
         });
 
     </script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -22,7 +23,7 @@ class UsersController extends Controller
 
     public function fetchUsers()
     {
-       $users = User::all();
+       $users = User::all()->except(Auth::id());
        return response()->json([
            'users' => $users
        ]);
@@ -137,4 +138,22 @@ class UsersController extends Controller
        }
 
     }
+
+    public function deleteUser($id)
+    {
+            $user = User::find($id);
+            if($user){
+                $user->delete();
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Deleted Successful',
+                ]);
+
+            }else{
+                return response()->json([
+                    'status' => 400,
+                    'message' => "User Not found"
+                ]);
+            }
+       }
 }
