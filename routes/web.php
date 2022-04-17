@@ -23,6 +23,7 @@ Route::controller(DashboardController::class)->group(function (){
 });
 
 Route::prefix('/dashboard')->middleware('auth')->group(function (){
+//    donation controller group
     Route::controller(DonationController::class)->group(function (){
     Route::get('/donations', 'showDonations')->name('donations');
     Route::get('/donation/types', 'showDonationTypes')->name('donationTypes');
@@ -34,18 +35,17 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
     Route::delete('/donation/type/delete/{id}', 'deleteType')->name('deleteType');
 
     });
+//user controller group
+    Route::controller(UsersController::class)->group(function (){
+        Route::get('/users', 'showUsers')->name('users');
+        Route::get('/fetch-users', 'fetchUsers')->name('fetchUsers');
+        Route::get('/user/{id}', 'getSingleUser')->name('getSingleUser');
+    });
 });
 
 
 Auth::routes();
 
-Route::get('/users', function (){
-    return view('admin.users.users');
-})->name('users');
 
 
 
-Route::controller(UsersController::class)->group(function (){
-    Route::get('/users', 'showUsers')->name('users');
-    Route::get('/user/add', 'addUser')->name('addUser');
-});

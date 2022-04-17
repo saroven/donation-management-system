@@ -13,17 +13,10 @@
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Data</div>
-                            <a id="users" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
+                            <a id="users" class="nav-link" href="{{ route('users') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Users
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseUsers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" id="addUser" href="{{ route('addUser') }}">Add User</a>
-                                    <a class="nav-link" id="manageUser" href="{{ route('users') }}">Manage User</a>
-                                </nav>
-                            </div>
 
                             <a id="donations" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseDonations" aria-expanded="false" aria-controls="collapseDonations">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
