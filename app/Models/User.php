@@ -20,6 +20,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'address',
+        'mobile',
+        'gender',
+        'profile_pic',
         'password',
     ];
 
@@ -41,4 +45,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function donations()
+    {
+        return $this->hasMany(Donations::class);
+    }
 }
