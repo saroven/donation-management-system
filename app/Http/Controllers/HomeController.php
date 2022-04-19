@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Donations;
+use App\Models\DonationTypes;
+use App\Models\Images;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -37,7 +40,9 @@ class HomeController extends Controller
 
     public function showDonatePage()
     {
-        return view('public.donate');
+        $donation_types =  DonationTypes::all();
+
+        return view('public.donate', ['donation_types' => $donation_types]);
     }
     public function showDonationsPage()
     {
@@ -50,5 +55,46 @@ class HomeController extends Controller
     public function showAboutPage()
     {
         return view('public.about');
+    }
+     public function addDonation(Request $request)
+    {
+        $this->validate($request, [
+         'donationType' => 'required|integer',
+         'donationName' => 'required|string|max:120',
+         'donationQuantity' => 'required|integer',
+         'donationWeight' => 'nullable|integer',
+         'collectionAddress' => 'required|string|max:120',
+         'donationNote' => 'required|string|max:256',
+         ]);
+//                 'donationImages' => 'required|image|mimes:jpg,png,jpeg,gif',
+
+            $donationId = Donations::insert([
+            'user_id' => auth()->user()->id,
+            'donation_type_id' => $request->donationType,
+            'donation_name' => $request->donationName,
+            'donation_quantity' => $request->donationQuantity,
+            'donation_weight' => $request->donationWeight,
+            'collection_address' => $request->collectionAddress,
+            'note' => $request->donationNote,
+        ]);
+            if($donationId){
+                foreach ($request->file('donationImages') as $imagefile) {
+                  $fileName = '';
+                    if ($imagefile != null){
+                        $fileName = time().'_logo.'.$imagefile->getClientOriginalExtension();
+                        $imagefile->move(public_path('assets/donationImages'), $fileName);
+                        $image = new Images;
+                        $image->donation_id = $donationId;
+                        $image->path = 'assets/donationImages/'.$fileName;
+                        $image->save();
+                    }
+
+               }
+
+                return redirect()->back()->with('success', "Thanks For Donating.");
+            }else{
+                return redirect()->back()->with('error', "Something went wrong!");
+            }
+
     }
 }

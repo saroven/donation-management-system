@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->unsignedBigInteger('donation_type_id');
-            $table->string('item_name');
-            $table->string('pickup_address');
+            $table->string('donation_name');
+            $table->string('donation_quantity');
+            $table->string('donation_weight')->nullable();
+            $table->string('collection_address');
             $table->string('note')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();

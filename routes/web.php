@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::controller(HomeController::class)->group(function (){
     Route::get('/',  'showHome')->name('home');
     Route::get('/home',  'showHome');
-    Route::get('/donate',  'showDonatePage')->name('donate');
+    Route::get('/donate',  'showDonatePage')->name('donate')->middleware(['auth']);
+    Route::post('/donate',  'addDonation')->name('addDonation');
     Route::get('/about', 'showAboutPage')->name('about');
     Route::get('/donations', 'showDonationsPage')->name('donations');
     Route::get('/contact', 'showContactPage')->name('contact');

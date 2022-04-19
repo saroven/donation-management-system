@@ -7245,9 +7245,29 @@ li {
    padding-left: 10px;
    padding-right: 10px;
 }
-
-.contact-form__input-box input[type="text"],
-.contact-form__input-box input[type="email"] {
+.donation-form-label{
+    font-size: 16px;
+    padding-left: 34px;
+}
+.donation-form-link {
+    font-size: 14px;
+    padding-left: 34px;
+    padding-bottom: 20px;
+    border: none;
+    background: transparent;
+    color: #0a53be;
+}
+.donation-form-error-message{
+    background: red !important;
+    color: white !important;
+}
+.invalid-feedback{
+    display: block;
+    padding-left: 35px;
+    padding-bottom: 9px;
+}
+.donation-form-input-box input[type="text"],
+.donation-form-input-box input[type="email"] {
    height: 67px;
    width: 100%;
    border: none;
@@ -7259,8 +7279,19 @@ li {
    font-size: 16px;
    color: var(--thm-gray);
 }
-
-.contact-form__input-box textarea {
+.donation-form-input-box input[type="file"]{
+       height: 67px;
+       width: 100%;
+       border: none;
+       background: #f7f4f2;
+     padding: 13px 0px 16px 34px;
+       margin-bottom: 30px;
+       border-radius: 30px;
+       outline: none;
+       font-size: 16px;
+       color: var(--thm-gray);
+}
+.donation-form-input-box textarea {
    font-size: 16px;
    color: var(--thm-gray);
    height: 180px;

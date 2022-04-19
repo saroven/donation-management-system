@@ -16,6 +16,17 @@ class DonationController extends Controller
         return view('admin.donations.view', ['donations' => $donations]);
     }
 
+    public function addDonation(Request $request)
+    {
+        return $request->all();
+        foreach ($request->file('images') as $imagefile) {
+         $image = new Image;
+         $path = $imagefile->store('/images/resource', ['disk' =>   'my_files']);
+         $image->url = $path;
+         $image->product_id = $product->id;
+         $image->save();
+       }
+    }
     public function showDonationTypes()
     {
         return view('admin.donations.types.view');
