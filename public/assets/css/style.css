@@ -7264,10 +7264,12 @@ li {
 .invalid-feedback{
     display: block;
     padding-left: 35px;
-    padding-bottom: 9px;
-}
+    padding-bottom: 9px;}
 .donation-form-input-box input[type="text"],
-.donation-form-input-box input[type="email"] {
+.donation-form-input-box input[type="email"] ,
+.contact-form__input-box input[type="text"],
+.contact-form__input-box input[type="email"]
+{
    height: 67px;
    width: 100%;
    border: none;
@@ -7279,7 +7281,8 @@ li {
    font-size: 16px;
    color: var(--thm-gray);
 }
-.donation-form-input-box input[type="file"]{
+.donation-form-input-box input[type="file"],
+.contact-form__input-box input[type="file"] {
        height: 67px;
        width: 100%;
        border: none;
@@ -7291,7 +7294,9 @@ li {
        font-size: 16px;
        color: var(--thm-gray);
 }
-.donation-form-input-box textarea {
+.donation-form-input-box textarea,
+.contact-form__input-box textarea
+{
    font-size: 16px;
    color: var(--thm-gray);
    height: 180px;
