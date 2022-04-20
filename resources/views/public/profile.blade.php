@@ -24,7 +24,7 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <h5>Successful Donation</h5>
-                            0
+                            {{ count($successfulDonations) }}
                         </div>
                         <div class="card-footer">
                             <a href="#">View Details</a>
@@ -33,7 +33,7 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <h5>Pending Donation</h5>
-                            0
+                            {{ count($pendingDonations) }}
                         </div>
                         <div class="card-footer">
                             <a href="#">View Details</a>

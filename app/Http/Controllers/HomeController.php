@@ -113,7 +113,13 @@ class HomeController extends Controller
     public function showProfilePage()
     {
         $totalDonations = User::find(auth()->user()->id)->donations;
-        return view('public.profile', ['totalDonations' => $totalDonations]);
+        $pendingDonations = User::find(auth()->user()->id)->donations()->where('status', 0)->get();
+        $successfulDonations = User::find(auth()->user()->id)->donations()->where('status', 1)->get();
+        return view('public.profile', [
+            'totalDonations' => $totalDonations,
+            'pendingDonations' => $pendingDonations,
+            'successfulDonations' => $successfulDonations
+        ]);
     }
 
     public function updateProfile(Request $request)
