@@ -124,7 +124,6 @@ class HomeController extends Controller
 
     public function updateProfile(Request $request)
     {
-//        return auth()->user()->profile_pic;
         $user = User::find(auth()->user()->id);
             if($user) {
                 $request->validate([
@@ -158,7 +157,6 @@ class HomeController extends Controller
                 }
                 $user->update();
                 return redirect()->back()->with('success', "Updated Successful.");
-
 
             }else{
                   return redirect()->back()->with('error', "Something went wrong!");
