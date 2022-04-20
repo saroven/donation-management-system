@@ -66,9 +66,9 @@ class HomeController extends Controller
          'collectionAddress' => 'required|string|max:120',
          'donationNote' => 'required|string|max:256',
          ]);
-//                 'donationImages' => 'required|image|mimes:jpg,png,jpeg,gif',
+//      'donationImages' => 'required|image|mimes:jpg,png,jpeg,gif',
 
-            $donationId = Donations::insert([
+            $donation = Donations::create([
             'user_id' => auth()->user()->id,
             'donation_type_id' => $request->donationType,
             'donation_name' => $request->donationName,
@@ -77,16 +77,25 @@ class HomeController extends Controller
             'collection_address' => $request->collectionAddress,
             'note' => $request->donationNote,
         ]);
-            if($donationId){
+            if($donation->id){
                 foreach ($request->file('donationImages') as $imagefile) {
                   $fileName = '';
                     if ($imagefile != null){
-                        $fileName = time().'_logo.'.$imagefile->getClientOriginalExtension();
-                        $imagefile->move(public_path('assets/donationImages'), $fileName);
-                        $image = new Images;
-                        $image->donation_id = $donationId;
-                        $image->path = 'assets/donationImages/'.$fileName;
-                        $image->save();
+                        if (
+                            $imagefile->getClientOriginalExtension() == 'jpg' ||
+                            $imagefile->getClientOriginalExtension() == 'jpeg' ||
+                            $imagefile->getClientOriginalExtension() == 'png' ||
+                            $imagefile->getClientOriginalExtension() == 'gif'){
+                            $fileName = time().'_donation.'.$imagefile->getClientOriginalExtension();
+                            $imagefile->move(public_path('assets/donationImages'), $fileName);
+                            $image = new Images;
+                            $image->donation_id = $donation->id;
+                            $image->path = 'assets/donationImages/'.$fileName;
+                            $image->save();
+                        }else{
+                            Donations::find($donation->id)->delete();
+                            return redirect()->back()->withInput()->with('error', "Image Extension must be jpg,jpeg,png,gif!");
+                        }
                     }
 
                }

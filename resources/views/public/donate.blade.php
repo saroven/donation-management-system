@@ -13,7 +13,7 @@
                <div class="col-xl-12">
                   <div class="contact-form">
                       @if(session()->has('error'))
-                          <x-alert type="error" :message="session('error')"/>
+                          <x-alert type="danger" :message="session('error')"/>
                             @elseif(session()->has('success'))
                             <x-alert type="success" :message="session('success')"/>
                       @endif

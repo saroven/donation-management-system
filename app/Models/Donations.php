@@ -9,6 +9,15 @@ class Donations extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'donation_type_id',
+        'donation_name',
+        'donation_quantity',
+        'donation_weight',
+        'collection_address',
+        'note'
+    ];
     public function images()
     {
        return $this->hasMany(Images::class);
