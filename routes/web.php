@@ -20,22 +20,23 @@ Route::controller(HomeController::class)->group(function (){
     Route::post('/profile', 'updateProfile')->name('updateProfile')->middleware(['auth']);
 });
 
-Route::controller(DashboardController::class)->group(function (){
-    Route::get('/dashboard', 'showDashboard')->name('dashboard');
 
-});
 
-Route::prefix('/dashboard')->middleware('auth')->group(function (){
-//    donation controller group
+Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
+
+    Route::controller(DashboardController::class)->group(function (){
+        Route::get('/', 'showDashboard')->name('dashboard');
+    });
+        //donation controller group
     Route::controller(DonationController::class)->group(function (){
-    Route::get('/donations', 'showDonations')->name('donations');
-    Route::get('/donation/types', 'showDonationTypes')->name('donationTypes');
-    Route::get('/donation/types/fetch', 'fetchDonationTypes')->name('fetchTypes');
-    Route::get('/donation/type/add', 'showDonationTypes')->name('addDonationType');
-    Route::post('/donation/type/add', 'addDonationType')->name('insertDonationType');
-    Route::get('/donation/type/edit/{id}', 'editType')->name('editType');
-    Route::put('/donation/type/update/{id}', 'updateType')->name('updateType');
-    Route::delete('/donation/type/delete/{id}', 'deleteType')->name('deleteType');
+        Route::get('/donations', 'showDonations')->name('donations');
+        Route::get('/donation/types', 'showDonationTypes')->name('donationTypes');
+        Route::get('/donation/types/fetch', 'fetchDonationTypes')->name('fetchTypes');
+        Route::get('/donation/type/add', 'showDonationTypes')->name('addDonationType');
+        Route::post('/donation/type/add', 'addDonationType')->name('insertDonationType');
+        Route::get('/donation/type/edit/{id}', 'editType')->name('editType');
+        Route::put('/donation/type/update/{id}', 'updateType')->name('updateType');
+        Route::delete('/donation/type/delete/{id}', 'deleteType')->name('deleteType');
 
     });
 //user controller group
