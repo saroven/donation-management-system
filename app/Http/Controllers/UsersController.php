@@ -102,7 +102,7 @@ class UsersController extends Controller
         $userValidation = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
              'email' => 'required|string|email|max:255|unique:users,email,'.$id,
-            'password' => ['required', 'string', 'min:6'],
+            'password' => ['nullable', 'string', 'min:6'],
             'gender' => ['required', 'string'],
             'address' => ['required', 'string', 'min:3'],
             'mobile' => ['required', 'string', 'min:10'],
@@ -119,11 +119,14 @@ class UsersController extends Controller
             if($user){
                 $user->name = $request->name;
                 $user->email = $request->email;
-                $user->password = Hash::make($request->password);
                 $user->gender = $request->gender;
                 $user->address = $request->address;
                 $user->mobile = $request->mobile;
                 $user->user_type = $request->user_type;
+
+                if ($request->filled('password')){
+                    $user->password = Hash::make($request->password);
+                }
                 $user->update();
                 return response()->json([
                     'status' => 200,

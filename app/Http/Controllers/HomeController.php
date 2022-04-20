@@ -142,7 +142,7 @@ class HomeController extends Controller
                 $user->address = $request->address;
                 $user->mobile = $request->mobile;
 
-                if ($request->has('password')){
+                if ($request->filled('password')){
                     $user->password = Hash::make($request->password);
                 }
 
