@@ -60,7 +60,7 @@
                                             <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
                                         @endif
                                     @else
-                                        <a class="dropdown-item" href="#">Profile</a>
+                                        <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
                                         <a class="dropdown-item" href="#">Change Password</a>
                                         <hr class="dropdown-divider" />
                                         <a class="dropdown-item"

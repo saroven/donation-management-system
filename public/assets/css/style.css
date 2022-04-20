@@ -4932,7 +4932,10 @@ li {
    margin-bottom: 30px;
 }
 .padding-top-120 {
-   padding-top: 120px;
+   padding-top: 120px !important;
+}
+.padding-top-200 {
+   padding-top: 200px !important;
 }
 /*--------------------------------------------------------------
 # Welcome Two
@@ -7258,8 +7261,10 @@ li {
     color: #0a53be;
 }
 .donation-form-error-message{
-    background: red !important;
-    color: white !important;
+    border:2px solid red !important;
+}
+.profile-form-error-message{
+    border:2px solid red !important;
 }
 .invalid-feedback{
     display: block;
@@ -7433,29 +7438,29 @@ li {
 /*--------------------------------------------------------------
 # Become Volunteer
 --------------------------------------------------------------*/
-.become-volunteer {
+.profile-page {
    position: relative;
    display: block;
    padding: 120px 0 120px;
 }
 
-.become-volunteer__left {
+.profile-page__left {
    position: relative;
    display: block;
 }
 
-.become-volunteer__img {
+.profile-page__img {
    position: relative;
    display: block;
    margin-bottom: 31px;
 }
 
-.become-volunteer__img img {
+.profile-page__img img {
    width: 100%;
    border-radius: var(--thm-border-radius);
 }
 
-.become-volunteer__requirements h3 {
+.profile-page__requirements h3 {
    font-size: 30px;
    font-family: var(--thm-font);
    line-height: 40px;
@@ -7463,12 +7468,12 @@ li {
    margin-bottom: 29px;
 }
 
-.become-volunteer__text {
+.profile-page__text {
    margin: 0;
    line-height: 36px;
 }
 
-.become-volunteer__requirements-list {
+.profile-page__requirements-list {
    position: relative;
    display: block;
    border-bottom: 1px solid #eae5e3;
@@ -7477,66 +7482,68 @@ li {
    margin-bottom: 27px;
 }
 
-.become-volunteer__requirements-list li {
+.profile-page__requirements-list li {
    display: flex;
    align-items: center;
 }
 
-.become-volunteer__requirements-icon span {
+.profile-page__requirements-icon span {
    font-size: 26px;
    color: var(--thm-base);
    position: relative;
    top: 3px;
 }
 
-.become-volunteer__requirements-text {
+.profile-page__requirements-text {
    margin-left: 15px;
 }
 
-.become-volunteer__requirements-text p {
+.profile-page__requirements-text p {
    font-size: 20px;
    color: var(--thm-black);
    margin: 0;
 }
 
-.become-volunteer__requirements-list li + li {
+.profile-page__requirements-list li + li {
    margin-top: 11px;
 }
 
-.become-volunteer__mail-box {
+.profile-page__mail-box {
    position: relative;
    display: block;
 }
 
-.become-volunteer__mail-box p {
+.profile-page__mail-box p {
    font-size: 24px;
    margin: 0;
    font-family: var(--thm-font-shadows);
    color: var(--thm-black);
 }
 
-.become-volunteer__mail-box a {
+.profile-page__mail-box a {
    font-size: 24px;
    color: var(--thm-primary);
 }
 
-.become-volunteer__right {
+.profile-page__right {
    position: relative;
    display: block;
 }
 
-.become-volunteer__form {
+.profile-page__form {
    position: relative;
    display: block;
 }
 
-.become-volunteer__input {
+.profile-page__input {
    position: relative;
    display: block;
 }
 
-.become-volunteer__input input[type="text"],
-.become-volunteer__input input[type="email"] {
+.profile-page__input input[type="text"],
+.profile-page__input input[type="email"],
+.profile-page__input input[type="password"],
+.profile-page__input input[type="number"] {
    height: 67px;
    width: 100%;
    border: none;
@@ -7548,8 +7555,19 @@ li {
    font-size: 16px;
    color: var(--thm-gray);
 }
-
-.become-volunteer__input textarea {
+.profile-page__input input[type="file"]{
+    height: 67px;
+   width: 100%;
+   border: none;
+   background: #f7f4f2;
+    padding: 13px 30px;
+   margin-bottom: 20px;
+   border-radius: 30px;
+   outline: none;
+   font-size: 16px;
+   color: var(--thm-gray);
+}
+.profile-page__input textarea {
    font-size: 16px;
    color: var(--thm-gray);
    height: 180px;

@@ -16,6 +16,8 @@ Route::controller(HomeController::class)->group(function (){
     Route::get('/about', 'showAboutPage')->name('about');
     Route::get('/donations', 'showDonationsPage')->name('donations');
     Route::get('/contact', 'showContactPage')->name('contact');
+    Route::get('/profile', 'showProfilePage')->name('profile')->middleware(['auth']);
+    Route::post('/profile', 'updateProfile')->name('updateProfile')->middleware(['auth']);
 });
 
 Route::controller(DashboardController::class)->group(function (){
