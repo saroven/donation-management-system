@@ -64,7 +64,6 @@
                                             <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
                                         @endif
                                         <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
-                                        <a class="dropdown-item" href="#">Change Password</a>
                                         <hr class="dropdown-divider" />
                                         <a class="dropdown-item"
                                            href="{{ route('logout') }}"
