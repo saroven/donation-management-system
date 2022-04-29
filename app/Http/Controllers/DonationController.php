@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Validator;
 use App\Models\Donations;
 use App\Models\DonationTypes;
@@ -198,4 +199,21 @@ class DonationController extends Controller
 
     }
 
+    public function showUserDonations(Request $request)
+    {
+       if (!isset($request->filter)){
+           $filter = 'all-donations';
+       }else{
+           $filter =  $request->filter;
+       }
+
+        if ($filter== 'all-donations'){
+            $donations = User::find(auth()->user()->id)->donations;
+        }elseif ($filter== 'successful-donations'){
+            $donations = User::find(auth()->user()->id)->donations()->where('status', 1)->get();
+        }elseif ($filter== 'pending-donations'){
+            $donations = User::find(auth()->user()->id)->donations()->where('status', 0)->get();
+        }
+        return view('public.userDonations', ['filter' => $filter, 'donations' => $donations]);
+    }
 }

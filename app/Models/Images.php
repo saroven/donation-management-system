@@ -9,8 +9,4 @@ class Images extends Model
 {
     use HasFactory;
 
-    public function donation()
-    {
-      return $this->belongsTo(Donations::class);
-    }
 }

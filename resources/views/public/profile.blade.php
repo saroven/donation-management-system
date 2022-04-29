@@ -18,7 +18,7 @@
                             {{ count($totalDonations) }}
                         </div>
                         <div class="card-footer">
-                            <a id="viewAllDonation" href="#">View Details</a>
+                            <a id="viewAllDonation" href="{{ route('show-user-donations').'?filter=all-donations' }}">View Details</a>
                         </div>
                     </div>
                     <div class="card mb-3">
@@ -27,7 +27,7 @@
                             {{ count($successfulDonations) }}
                         </div>
                         <div class="card-footer">
-                            <a id="viewSuccessfulDonation" href="#">View Details</a>
+                            <a id="viewSuccessfulDonation" href="{{ route('show-user-donations').'?filter=successful-donations' }}">View Details</a>
                         </div>
                     </div>
                     <div class="card mb-3">
@@ -36,7 +36,7 @@
                             {{ count($pendingDonations) }}
                         </div>
                         <div class="card-footer">
-                            <a id="viewPendingDonation" href="#">View Details</a>
+                            <a id="viewPendingDonation" href="{{ route('show-user-donations').'?filter=pending-donations' }}">View Details</a>
                         </div>
                     </div>
                 </div>
