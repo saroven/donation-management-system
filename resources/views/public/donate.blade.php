@@ -19,7 +19,7 @@
                       @endif
 
                      <form
-                        action="{{ route('addDonation') }}"
+                        action="{{ route('makeDonation') }}"
                         class="contact-form-validated contact-one__form"
                         method="POST"
                         enctype="multipart/form-data"

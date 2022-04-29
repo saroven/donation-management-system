@@ -11,13 +11,16 @@ use Illuminate\Support\Facades\Route;
 Route::controller(HomeController::class)->group(function (){
     Route::get('/',  'showHome')->name('home');
     Route::get('/home',  'showHome');
-    Route::get('/donate',  'showDonatePage')->name('donate')->middleware(['auth']);
-    Route::post('/donate',  'addDonation')->name('addDonation');
     Route::get('/about', 'showAboutPage')->name('about');
-    Route::get('/donations', 'showDonationsPage')->name('donations');
     Route::get('/contact', 'showContactPage')->name('contact');
-    Route::get('/profile', 'showProfilePage')->name('profile')->middleware(['auth']);
-    Route::post('/profile', 'updateProfile')->name('updateProfile')->middleware(['auth']);
+    Route::get('/profile', 'showProfilePage')->name('profile')->middleware('auth');
+    Route::post('/profile', 'updateProfile')->name('updateProfile')->middleware('auth');
+});
+
+Route::controller(DonationController::class)->group(function (){
+    Route::get('/donate',  'showDonatePage')->name('donate')->middleware('auth');
+    Route::post('/donate',  'makeDonation')->name('makeDonation')->middleware('auth');
+    Route::get('/donations', 'showDonationsPage')->name('donations');
 });
 
 
@@ -37,7 +40,6 @@ Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
         Route::get('/donation/type/edit/{id}', 'editType')->name('editType');
         Route::put('/donation/type/update/{id}', 'updateType')->name('updateType');
         Route::delete('/donation/type/delete/{id}', 'deleteType')->name('deleteType');
-
     });
 //user controller group
     Route::controller(UsersController::class)->group(function (){

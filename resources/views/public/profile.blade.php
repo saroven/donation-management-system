@@ -18,7 +18,7 @@
                             {{ count($totalDonations) }}
                         </div>
                         <div class="card-footer">
-                            <a href="#">View Details</a>
+                            <a id="viewAllDonation" href="#">View Details</a>
                         </div>
                     </div>
                     <div class="card mb-3">
@@ -27,7 +27,7 @@
                             {{ count($successfulDonations) }}
                         </div>
                         <div class="card-footer">
-                            <a href="#">View Details</a>
+                            <a id="viewSuccessfulDonation" href="#">View Details</a>
                         </div>
                     </div>
                     <div class="card mb-3">
@@ -36,7 +36,7 @@
                             {{ count($pendingDonations) }}
                         </div>
                         <div class="card-footer">
-                            <a href="#">View Details</a>
+                            <a id="viewPendingDonation" href="#">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -130,6 +130,5 @@
 </section>
 <!--Become Volunteer End-->
 @endsection
-
 
 

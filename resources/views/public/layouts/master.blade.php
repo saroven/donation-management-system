@@ -107,6 +107,6 @@
 
       <!-- template scripts -->
       <script src="{{ asset('assets/js/theme.js') }}"></script>
-
+   @stack('js')
    </body>
 </html>
