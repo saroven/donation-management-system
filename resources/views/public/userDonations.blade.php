@@ -17,11 +17,11 @@
                         <div class="event-page__single">
                             <div class="event-page__img-box">
                                 <div class="event-page__img">
-{{--                                    $donation->images->pull('1')->path--}}
-{{--                                    @php--}}
-{{--                                       return $donationData = \App\Models\Donations::find($donation->id)->images();--}}
-{{--                                    @endphp--}}
-                                    <img src="{{ asset($donationData->path) }}" alt="">
+                                    @php
+                                        $image = $donation->images->first();
+
+                                    @endphp
+                                    <img src="{{$image->path}}" alt="">
                                 </div>
                             </div>
                             <div class="event-page__content">

@@ -18,8 +18,9 @@ class Donations extends Model
         'collection_address',
         'note'
     ];
+
     public function images()
     {
-       return $this->hasMany(Images::class);
+       return $this->hasMany(Images::class, 'donation_id', 'id');
     }
 }
