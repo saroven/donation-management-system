@@ -44,7 +44,7 @@
          rel="stylesheet"
       />
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
       <!-- Css-->
       <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" />
       <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
@@ -60,7 +60,7 @@
          rel="stylesheet"
          href=" {{ asset('assets/css/jquery.mCustomScrollbar.min.css') }} "
       />
-      <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.min.css') }} " />
+{{--      <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.min.css') }} " />--}}
       <link rel="stylesheet" href="{{ asset('assets/css/vegas.min.css') }}" />
       <link rel="stylesheet" href="{{ asset('assets/css/nouislider.min.css') }}" />
       <link rel="stylesheet" href="{{ asset('assets/css/nouislider.pips.css') }}" />

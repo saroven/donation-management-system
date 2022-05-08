@@ -216,4 +216,21 @@ class DonationController extends Controller
         }
         return view('public.userDonations', ['filter' => $filter, 'donations' => $donations]);
     }
+
+    public function getDonationDetails($id)
+    {
+        $donation = Donations::find($id);
+        if($donation){
+            return response()->json([
+                'status' => 200,
+                'donation' => $donation,
+            ]);
+        }else{
+            return response()->json([
+                'status' => 400,
+                'msg' => 'No Donation Data found',
+            ]);
+        }
+
+    }
 }

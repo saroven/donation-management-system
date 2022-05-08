@@ -21,8 +21,9 @@ Route::controller(DonationController::class)->group(function (){
     Route::get('/donate',  'showDonatePage')->name('donate')->middleware('auth');
     Route::post('/donate',  'makeDonation')->name('makeDonation')->middleware('auth');
     Route::get('/donations', 'showDonationsPage')->name('donations');
-    Route::get('/my-donations', 'showUserDonations')->name('show-user-donations');
-    Route::post('/my-donations', 'getUserDonations')->name('get-user-donations');
+    Route::get('/my-donations', 'showUserDonations')->name('show-user-donations')->middleware('auth');
+    Route::post('/my-donations', 'getUserDonations')->name('get-user-donations')->middleware('auth');
+    Route::get('/donation-details/{id}', 'getDonationDetails')->name('get-donation-details')->middleware('auth');
 });
 
 
