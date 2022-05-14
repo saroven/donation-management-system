@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Donations;
 use App\Models\DonationTypes;
+use App\Models\Setting;
 use App\Models\User;
 use App\Models\Images;
 use Hash;
@@ -47,7 +48,8 @@ class HomeController extends Controller
     }
     public function showAboutPage()
     {
-        return view('public.about');
+        $settings = Setting::first();
+        return view('public.about', ['setting' => $settings]);
     }
     public function showProfilePage()
     {

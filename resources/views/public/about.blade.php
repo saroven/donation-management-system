@@ -9,10 +9,12 @@
                     <div class="col-xl-6 col-lg-6">
                         <div class="make-donation-two__left">
                             <div class="block-title text-left">
-                               <h4>Make a Donation</h4>
-                               <h2>We Make a Difference in their Life</h2>
+{{--                               <h4>Make a Donation</h4>--}}
+                               <h2>{{ $setting->about_title }}</h2>
                             </div>
-                            <p class="make-donation-two__text">Tincidunt elit magnis nulla facilisis sagittis is maecenas. Sapien nunced amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, aut consequuntur cumque doloribus eius exercitationem ipsa iusto minima natus nobis, placeat unde. Ad ducimus facere quo ullam. Incidunt iste, nulla.q Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, alias aliquid dolore dolores earum enim error, illo iste iusto laboriosam magni nulla quasi recusandae rem soluta tenetur ut veritatis vitae?</p>
+                            <p class="make-donation-two__text">
+                                {{ $setting->about_content }}
+                            </p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6">
@@ -20,7 +22,7 @@
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12">
                                     <div class="make-donation-two__single-img">
-                                        <img src="{{ asset('assets') }}/images/resources/make-donation-two-img.jpg" alt="">
+                                        <img src="{{asset('assets/about_img/')}}{{ '/'.$setting->about_img ?? asset('assets').'/images/resources/make-donation-two-img.jpg' }}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -31,6 +33,7 @@
         </section>
         <!--Make Donation Two End-->
         <!--CTA Two Start-->
+        @guest
         <section class="cta-one" style="background-image: url(assets/images/backgrounds/cta-two-bg.jpg)">
             <div class="container">
                 <div class="row">
@@ -41,7 +44,7 @@
                                 <h3>Become a Donor Now</h3>
                             </div>
                             <div class="cta-one__btn">
-                                <a href="become-volunteer.html" class="thm-btn">Join Now</a>
+                                <a href="{{ route('register') }}" class="thm-btn">Join Now</a>
                             </div>
                         </div>
                     </div>
@@ -49,6 +52,7 @@
             </div>
         </section>
         <!--CTA Two End-->
+        @endguest
        <script>
           let navItem = document.getElementById('about');
           navItem.classList.add('current');
