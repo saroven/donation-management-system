@@ -79,8 +79,11 @@
 
                         }else{
                             $("#viewDetailsModal").modal('show');
-                            let html = '<strong>'+ response.donation.donation_name + '</strong>' +
+                            let html = '<strong style="font-size: 25px">'+ response.donation.donation_name + '</strong>' +
                                 '<div>Quantity/Weight: '+ response.donation.donation_quantity + '</div>' +
+                                '<div>Donor Name: '+ response.donor.name + '</div>' +
+                                '<div>Email: '+ response.donor.email + '</div>' +
+                                '<div>Mobile: '+ response.donor.mobile + '</div>' +
                                 '<div>Collection Address: '+ response.donation.collection_address + '</div>' +
                                 '<div>Note: '+ response.donation.note + '</div>'
                             $("#body").html(html);

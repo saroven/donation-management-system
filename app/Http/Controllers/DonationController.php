@@ -19,6 +19,14 @@ class DonationController extends Controller
         return view('admin.donations.view', ['donations' => $donations]);
     }
 
+    public function donationDetails($id)
+    {
+        $donation= Donations::find($id);
+
+
+        return view('admin.donations.details', ['donation' => $donation]);
+    }
+
     public function addDonation(Request $request)
     {
         return $request->all();
@@ -153,6 +161,7 @@ class DonationController extends Controller
     }
      public function makeDonation(Request $request)
     {
+        $user = User::find(auth()->user->id);
         $this->validate($request, [
          'donationType' => 'required|integer',
          'donationName' => 'required|string|max:120',
@@ -227,6 +236,7 @@ class DonationController extends Controller
             return response()->json([
                 'status' => 200,
                 'donation' => $donation,
+                'donor' => $donation->donor
             ]);
         }else{
             return response()->json([

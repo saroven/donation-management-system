@@ -27,10 +27,7 @@ Route::controller(DonationController::class)->group(function (){
     Route::get('/donation-details/{id}', 'getDonationDetails')->name('get-donation-details')->middleware('auth');
 });
 
-Route::controller(SettingController::class)->group(function (){
-    Route::get('/settings',  'showSettingsPage')->name('settings')->middleware('auth');
-    Route::post('/settings/update',  'update')->name('settings.update')->middleware('auth');
-});
+
 //dashboard prefix
 Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
     //dashboard controller for the admins
@@ -40,6 +37,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
         //donation controller group for admins
     Route::controller(DonationController::class)->group(function (){
         Route::get('/donations', 'showDonations')->name('donations');
+        Route::get('/donation/{id}', 'donationDetails')->name('donation.details');
         Route::get('/donation/types', 'showDonationTypes')->name('donationTypes');
         Route::get('/donation/types/fetch', 'fetchDonationTypes')->name('fetchTypes');
         Route::get('/donation/type/add', 'showDonationTypes')->name('addDonationType');
@@ -58,6 +56,11 @@ Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
         Route::put('/updateUser/{id}', 'updateUser')->name('updateUser');
         Route::delete('/deleteUser/{id}', 'deleteUser')->name('deleteUser');
     });
+
+    Route::controller(SettingController::class)->group(function (){
+    Route::get('/settings',  'showSettingsPage')->name('settings');
+    Route::post('/settings/update',  'update')->name('settings.update');
+});
 });
 
 
