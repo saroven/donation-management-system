@@ -23,4 +23,8 @@ class Donations extends Model
     {
        return $this->hasMany(Images::class, 'donation_id', 'id');
     }
+    public function type()
+    {
+       return $this->hasOne(DonationTypes::class, 'id', 'donation_type_id');
+    }
 }

@@ -32,7 +32,7 @@
                                  <a href="{{ route('contact') }}">Contact</a>
                               </li>
                                <li id="donations">
-                                 <a href="{{ route('donations') }}">Donations</a>
+                                 <a href="{{ route('public.donations') }}">Donations</a>
                                </li>
                                <li id="gallery">
                                  <a href="#">Gallery</a>

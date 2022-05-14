@@ -30,7 +30,7 @@
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Controls</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" id="settings" href="{{ route('settings') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
                                 Settings
                             </a>

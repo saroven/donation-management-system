@@ -1,4 +1,4 @@
-@extends('public.layouts.master' , ['title' => 'Donations'])
+@extends('public.layouts.master' , ['title' => 'My Donations'])
 @section('content')
     <section class="filter container">
 
@@ -38,9 +38,9 @@
                     </div>
                     @endforeach
                 </div>
-                <div class="text-center more-post__btn">
-                    <a href="#" class="thm-btn">Load More</a>
-                </div><!-- /.text-center -->
+{{--                <div class="text-center more-post__btn">--}}
+{{--                    <a href="#" class="thm-btn">Load More</a>--}}
+{{--                </div><!-- /.text-center -->--}}
             </div>
         </section>
         <!--Event Page End-->
@@ -48,15 +48,14 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="viewDetailsModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="title" style="text-transform: capitalize">Donation Details</h5>
             <button type="button" class="btn-close close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div id="title"></div>
+            <div id="body"></div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -87,8 +86,11 @@
 
                         }else{
                             $("#viewDetailsModal").modal('show');
-                            console.log(response.donation);
-                            $("#title").html(response.donation.donation_name);
+                            let html = '<strong>'+ response.donation.donation_name + '</strong>' +
+                                '<div>Quantity/Weight: '+ response.donation.donation_quantity + '</div>' +
+                                '<div>Collection Address: '+ response.donation.collection_address + '</div>' +
+                                '<div>Note: '+ response.donation.note + '</div>'
+                            $("#body").html(html);
                         }
                     }
                 });

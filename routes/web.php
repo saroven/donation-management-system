@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,13 +21,16 @@ Route::controller(HomeController::class)->group(function (){
 Route::controller(DonationController::class)->group(function (){
     Route::get('/donate',  'showDonatePage')->name('donate')->middleware('auth');
     Route::post('/donate',  'makeDonation')->name('makeDonation')->middleware('auth');
-    Route::get('/donations', 'showDonationsPage')->name('donations');
+    Route::get('/donations', 'showDonationsPage')->name('public.donations');
     Route::get('/my-donations', 'showUserDonations')->name('show-user-donations')->middleware('auth');
     Route::post('/my-donations', 'getUserDonations')->name('get-user-donations')->middleware('auth');
     Route::get('/donation-details/{id}', 'getDonationDetails')->name('get-donation-details')->middleware('auth');
 });
 
-
+Route::controller(SettingController::class)->group(function (){
+    Route::get('/settings',  'showSettingsPage')->name('settings')->middleware('auth');
+    Route::post('/settings/update',  'update')->name('settings.update')->middleware('auth');
+});
 //dashboard prefix
 Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
     //dashboard controller for the admins

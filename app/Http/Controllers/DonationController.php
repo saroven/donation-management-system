@@ -15,6 +15,7 @@ class DonationController extends Controller
     {
         $donations= Donations::all();
 
+
         return view('admin.donations.view', ['donations' => $donations]);
     }
 
@@ -140,7 +141,9 @@ class DonationController extends Controller
 //   for user...
     public function showDonationsPage()
     {
-        return view('public.donations');
+        $donations = Donations::where('status', 1)->get();
+
+        return view('public.donations', ['donations' => $donations]);
     }
     public function showDonatePage()
     {
