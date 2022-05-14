@@ -38,6 +38,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
     Route::controller(DonationController::class)->group(function (){
         Route::get('/donations', 'showDonations')->name('donations');
         Route::get('/donation/{id}', 'donationDetails')->name('donation.details');
+        Route::post('/donation/{id}/update', 'updateDonationDetails')->name('updateDonationDetails');
         Route::get('/donation/types', 'showDonationTypes')->name('donationTypes');
         Route::get('/donation/types/fetch', 'fetchDonationTypes')->name('fetchTypes');
         Route::get('/donation/type/add', 'showDonationTypes')->name('addDonationType');
@@ -45,6 +46,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
         Route::get('/donation/type/edit/{id}', 'editType')->name('editType');
         Route::put('/donation/type/update/{id}', 'updateType')->name('updateType');
         Route::delete('/donation/type/delete/{id}', 'deleteType')->name('deleteType');
+
     });
 //user controller group for admins
     Route::controller(UsersController::class)->group(function (){

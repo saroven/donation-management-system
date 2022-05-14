@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('donation_weight')->nullable();
             $table->string('collection_address');
             $table->string('note')->nullable();
-            $table->boolean('status')->default(false);
+            $table->integer('status')->default(false);
             $table->timestamps();
 
 //            $table->foreign('donation_type_id')->references('id')->on('donation_types')->onDelete('cascade');

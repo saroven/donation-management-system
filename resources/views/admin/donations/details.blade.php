@@ -7,6 +7,11 @@
                  <div class="card mb-4">
                     <div class="card-header">
                         <h1 class="mt-4">Donation Details</h1>
+                        @if(session()->has('error'))
+                          <x-alert type="danger" :message="session('error')"/>
+                            @elseif(session()->has('success'))
+                            <x-alert type="success" :message="session('success')"/>
+                      @endif
                     </div>
                     <div class="card-body">
 
@@ -31,7 +36,20 @@
                             <div class="d-flex"><p style="font-weight: bold; margin-right: 20px"> Created_at</p> {{ date('F jS, Y', strtotime($donation->created_at)) }}</div>
                             <div class="d-flex"><p style="font-weight: bold; margin-right: 20px"> Update_at</p> {{ date('F jS, Y', strtotime($donation->updated_at)) }}</div>
                             <div class="d-flex"><p style="font-weight: bold; margin-right: 20px"> Picture</p>
-                                <img height="100px" width="100px" src="{{ asset($donation->images->first()->path)  }}" alt=""></div>
+                                <img height="100px" width="100px" src="{{ asset($donation->images->first()->path)  }}" alt="">
+                            </div>
+                            <form method="post" action="{{ route('updateDonationDetails', $donation->id) }}">
+                                @csrf
+                                 <div class="d-flex pt-2"><p style="font-weight: bold; margin-right: 20px"> Status</p>
+                                <select name="status" id="status">
+                                    <option value="0" @if($donation->status == 0) selected @endif>Pending</option>
+                                    <option value="1" @if($donation->status == 1) selected @endif>Donated</option>
+                                    <option value="2" @if($donation->status == 2) selected @endif>Rejected</option>
+                                </select>
+                            </div>
+                                <button type="submit" class="mt-3 btn btn-primary">Update</button>
+                            </form>
+
 
 
                         </div>
@@ -41,22 +59,6 @@
             </div>
         </div>
     </main>
-    <div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="title" style="text-transform: capitalize">Donation Details</h5>
-            <button type="button" class="btn-close close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div id="body"></div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
 @endsection
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>

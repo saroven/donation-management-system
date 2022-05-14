@@ -27,6 +27,21 @@ class DonationController extends Controller
         return view('admin.donations.details', ['donation' => $donation]);
     }
 
+    public function updateDonationDetails(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|integer|max:2'
+        ]);
+        $donation = Donations::find($id);
+
+        if ($donation){
+            $donation->status = $request->status;
+
+            $donation->update();
+            return redirect()->back()->with('success', 'Updated Successful');
+        }
+    }
+
     public function addDonation(Request $request)
     {
         return $request->all();
@@ -149,7 +164,7 @@ class DonationController extends Controller
 //   for user...
     public function showDonationsPage()
     {
-        $donations = Donations::where('status', 1)->get();
+        $donations = Donations::where('status', 0)->get();
 
         return view('public.donations', ['donations' => $donations]);
     }
