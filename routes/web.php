@@ -22,9 +22,17 @@ Route::controller(DonationController::class)->group(function (){
     Route::get('/donate',  'showDonatePage')->name('donate')->middleware('auth');
     Route::post('/donate',  'makeDonation')->name('makeDonation')->middleware('auth');
     Route::get('/donations', 'showDonationsPage')->name('public.donations');
+    Route::post('/donation/request', 'requestForItem')->name('requestForItem');
     Route::get('/my-donations', 'showUserDonations')->name('show-user-donations')->middleware('auth');
     Route::post('/my-donations', 'getUserDonations')->name('get-user-donations')->middleware('auth');
     Route::get('/donation-details/{id}', 'getDonationDetails')->name('get-donation-details')->middleware('auth');
+    Route::get('/my-donation-requests', 'myDonationRequests')->name('myDonationRequests');
+    Route::get('/my-donation-requests/{id}/details', 'myDonationRequestsDetails')->name('myDonationRequestsDetails');
+    Route::post('/my-donation-requests/{id}/update', 'myDonationRequestsUpdate')->name('myDonationRequests.update');
+    Route::get('/receiveRequest', 'receiveRequest')->name('receiveRequest');
+    Route::get('/receiveRequest/{id}/details', 'receiveRequestDetails')->name('receiveRequest.details');
+    Route::post('/receiveRequest/{id}/update', 'receiveRequestUpdate')->name('receiveRequest.update');
+
 });
 
 

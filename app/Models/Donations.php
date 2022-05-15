@@ -32,4 +32,8 @@ class Donations extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+    public function request()
+    {
+        return $this->hasOne(DonationRequest::class, 'donation_id', 'id');
+    }
 }

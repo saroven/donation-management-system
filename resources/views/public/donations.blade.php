@@ -3,6 +3,11 @@
     <div id="errorMsg"></div>
         <!--Event Page Start-->
         <section class="event-page" style="padding-top: 200px">
+            @if(session()->has('error'))
+                  <x-alert type="danger" :message="session('error')"/>
+                    @elseif(session()->has('success'))
+                    <x-alert type="success" :message="session('success')"/>
+              @endif
             <div class="container">
                 <div class="row" id="donations">
                     @foreach($donations as $donation)
@@ -48,7 +53,14 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Request For this Item</button>
+            @if(auth()->user()->user_type != 1)
+               <form action="{{ route('requestForItem') }}" method="post">
+                   @csrf
+                      <input type="hidden" name="donationId" id="donationId">
+                   <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Request For this Item</button>
+
+                  </form>
+              @endif
           </div>
         </div>
       </div>
@@ -87,6 +99,7 @@
                                 '<div>Collection Address: '+ response.donation.collection_address + '</div>' +
                                 '<div>Note: '+ response.donation.note + '</div>'
                             $("#body").html(html);
+                            $("#donationId").val(response.donation.id);
                         }
                     }
                 });

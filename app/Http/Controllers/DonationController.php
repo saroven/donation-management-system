@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DonationRequest;
 use App\Models\User;
 use Validator;
 use App\Models\Donations;
@@ -223,6 +224,123 @@ class DonationController extends Controller
             }else{
                 return redirect()->back()->with('error', "Something went wrong!");
             }
+
+    }
+
+    public function requestForItem(Request $request)
+    {
+        $request->validate(['donationId' => 'required|integer']);
+
+        $donation = Donations::find($request->donationId);
+        if ($donation){
+            $check = DonationRequest::where('requester_id', auth()->user()->id)
+                ->where('donation_id', $request->donationId)
+                ->get();
+
+            if (count($check) == 0){
+                $req = new DonationRequest();
+                $req->requester_id = auth()->user()->id;
+                $req->donation_id = $request->donationId;
+                $req->donor_id = $donation->user_id;
+                $req->save();
+            }else{
+                return redirect()->back()->with('error', 'You already requested for this item.');
+            }
+
+            return redirect()->back()->with('success', 'Requested send to the donor.. wait for respond.');
+        }else{
+            return redirect()->back()->with('error', 'Something Went Wrong! Please try again later.');
+        }
+    }
+
+    public function myDonationRequests()
+    {
+        $requests = DonationRequest::where('requester_id', auth()->user()->id)->get();
+        return view('public.myDonationRequests', ['requests' => $requests]);
+    }
+
+    public function myDonationRequestsDetails($id)
+    {
+        $request = DonationRequest::find($id);
+        $donor = User::find($request->donation->user_id);
+        return view('public.donationRequestDetails', [
+            'request' => $request,
+            'donor' => $donor,
+        ]);
+    }
+    public function myDonationRequestsUpdate(Request $req, $id)
+    {
+        $donationRequest = DonationRequest::where('requester_id', auth()->user()->id)
+            ->where('donation_id', $id)
+            ->first();
+
+        if ($donationRequest){
+            $req->validate([
+                'status' => 'required|integer',
+                'feedback' => 'nullable|string|max:255',
+                'received_img' => 'sometimes|image|mimes:jpg,png,jpeg,gif',
+            ]);
+
+            if ($req->received_img != null){
+                if ($donationRequest->received_img != null){
+                    if (\File::exists(public_path().'/assets/donatedProof/'.$donationRequest->received_img)){
+                        unlink(public_path().'/assets/donatedProof/'.$donationRequest->received_img);
+                    }
+                }
+                $fileName = time().'_donation.'.$req->received_img->getClientOriginalExtension();
+                $req->received_img->move(public_path('assets/donatedProof'), $fileName);
+            }
+
+            DonationRequest::where('id', $id)->update([
+                'status' => $req->status,
+                'feedback' => $req->feedback ?? $donationRequest->feedback,
+                'received_img' => $fileName ?? $donationRequest->received_img
+            ]);
+            Donations::where('id', $donationRequest->donation->id)->update([
+                'status' => 1
+            ]);
+             return redirect()->back()->with('success', 'Updated Successfully');
+        }else{
+            return redirect()->back()->with('error', 'Something went Wrong!');
+
+        }
+
+
+
+    }
+
+    public function receiveRequest()
+    {
+//        $donation = $donation
+        $requests = DonationRequest::where('donor_id', auth()->user()->id)->get();
+        return view('public.receivedRequest', ['requests' => $requests]);
+    }
+
+    public function receiveRequestDetails($id)
+    {
+         $request = DonationRequest::find($id);
+        $requester = User::find($request->requester_id);
+        return view('public.receivedRequestDetails', [
+            'request' => $request,
+            'requester' => $requester,
+        ]);
+    }
+
+    public function receiveRequestUpdate(Request $req, $id)
+    {
+        $req->validate([
+            'status' => 'required|integer'
+        ]);
+        $request = DonationRequest::find($id);
+
+        if ($request){
+            $request->status =  $req->status;
+            $request->update();
+
+            return redirect()->back()->with('success', 'Updated Successfully');
+        }else{
+            return redirect()->back()->with('error', 'Something Went Wrong! Please try again later.');
+        }
 
     }
 

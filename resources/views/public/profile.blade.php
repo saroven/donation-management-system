@@ -12,6 +12,10 @@
                         <img style="height: 100px;width: 100px;border-radius: 50%; margin-right: 20px" class="profile-img" src="{{ asset(auth()->user()->profile_pic) }}" alt="">
                         Welcome ! {{ auth()->user()->name }}
                     </div>
+                    <div class="mt-5">
+                        <a href="{{ route('myDonationRequests') }}" class="btn btn-primary ">My Donation Requests</a>
+                        <a href="{{ route('receiveRequest') }}" class="btn btn-success ">Receive Requests</a>
+                    </div>
                     <div class="card mb-3 mt-5">
                         <div class="card-body">
                             <h5>Total Donation</h5>
