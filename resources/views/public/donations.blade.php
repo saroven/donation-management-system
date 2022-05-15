@@ -19,7 +19,7 @@
                                     @php
                                         $image = $donation->images->first();
                                     @endphp
-                                    <img src="{{$image->path}}" alt="">
+                                    <img src="{{$image->path ?? ''}}" alt="">
                                 </div>
                             </div>
                             <div class="event-page__content">
@@ -29,7 +29,7 @@
                                     <li><b>Quantity/Weight:</b> {{ $donation->donation_quantity ?? $donation->donation_weight }}</li>
                                     <li><b>Collection Address:</b> {{ $donation->collection_address }}</li>
                                 </ul>
-                                <button id="viewDetailsButton" value="{{ $donation->id }}" class="thm-btn event-page__btn">View Details</button>
+                                <button value="{{ $donation->id }}" class="thm-btn event-page__btn viewDetailsButton">View Details</button>
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
             $("#filter").on('change',function (e){
                location.href = "{{ route('get-user-donations') }}"+"?filter="+$("#filter").val();
             });
-            $("#viewDetailsButton").click(function (){
+            $(".viewDetailsButton").click(function (){
                 document.getElementById("errorMsg").innerHTML = "";
                  $("#errorMsg").html("");
                 let donationId = $(this).val();

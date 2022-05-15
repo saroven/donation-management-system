@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DonationRequest;
+use App\Models\Images;
 use App\Models\User;
 use Validator;
 use App\Models\Donations;
@@ -177,7 +178,7 @@ class DonationController extends Controller
     }
      public function makeDonation(Request $request)
     {
-        $user = User::find(auth()->user->id);
+        $user = User::find(auth()->user()->id);
         $this->validate($request, [
          'donationType' => 'required|integer',
          'donationName' => 'required|string|max:120',

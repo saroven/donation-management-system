@@ -36,8 +36,10 @@
                                           <p class="text-primary">Request Placed</p>
                                       @elseif($req->status == 1)
                                          <p class="text-success">Request Accepted</p>
+                                      @elseif($req->status == 2)
+                                       <p class="text-success">Received</p>
                                       @else
-                                       <p class="text-danger">Request Rejected</p>
+                                           <p class="text-danger">Request Rejected</p>
                                       @endif
                                   </td>
                                     <td><a href="{{ route('myDonationRequestsDetails', $req->id) }}" class="btn btn-primary">Details</a></td>
