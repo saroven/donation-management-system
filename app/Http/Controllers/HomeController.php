@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Donations;
 use App\Models\DonationTypes;
 use App\Models\Setting;
+use App\Models\Slider;
 use App\Models\User;
 use App\Models\Images;
 use Hash;
@@ -35,7 +36,8 @@ class HomeController extends Controller
 
     public function showHome()
     {
-        return view('public.home');
+        $sliders = Slider::all();
+        return view('public.home', ['sliders'=> $sliders]);
     }
     public function showAbout()
     {

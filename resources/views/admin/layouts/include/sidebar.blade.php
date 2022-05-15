@@ -34,6 +34,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
                                 Settings
                             </a>
+                            <a class="nav-link" id="sliders" href="{{ route('sliders') }}">
+                                <div class="sb-nav-link-icon"><i class="fa fa-sliders" aria-hidden="true"></i></i></div>
+                                Sliders
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

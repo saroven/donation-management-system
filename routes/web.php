@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,15 @@ Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
     Route::controller(SettingController::class)->group(function (){
     Route::get('/settings',  'showSettingsPage')->name('settings');
     Route::post('/settings/update',  'update')->name('settings.update');
+});
+
+    Route::controller(SliderController::class)->group(function (){
+    Route::get('/sliders',  'viewSliders')->name('sliders');
+    Route::get('/slider/add',  'addSlider')->name('sliders.add');
+    Route::post('/slider/add',  'insertSlider')->name('sliders.insert');
+    Route::get('/slider/{id}/edit',  'editSlider')->name('sliders.edit');
+    Route::post('/slider/{id}/update',  'updateSlider')->name('sliders.update');
+    Route::get('/slider/{id}/delete',  'deleteSlider')->name('sliders.delete');
 });
 });
 

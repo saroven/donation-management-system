@@ -22,78 +22,29 @@
     }}'
             >
                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
+                  @foreach($sliders as $slider)
+                      <div class="swiper-slide">
                      <div
                         class="image-layer"
                         style="
-                           background-image: url(assets/images/main-slider/slider-1-1.jpg);
+                           background-image: url(assets/sliders/{{$slider->slider_img}});
                         "
                      ></div>
                      <div class="container">
                         <div class="swiper-slide__inner">
                            <div class="row">
                               <div class="col-xl-12">
-                                 <p>Helping Them Today</p>
+                                 <p>{{ $slider->short_title }}</p>
                                  <h2>
-                                    Help the Poor <br />
-                                    in Need
+                                    {{ $slider->long_title }}
                                  </h2>
-                                 <a href="about.blade.php" class="thm-btn"
-                                    >Learn More</a
-                                 >
+
                               </div>
                            </div>
                         </div>
                      </div>
                   </div>
-                  <div class="swiper-slide">
-                     <div
-                        class="image-layer"
-                        style="
-                           background-image: url(assets/images/main-slider/slider-1-2.jpg);
-                        "
-                     ></div>
-                     <div class="container">
-                        <div class="swiper-slide__inner">
-                           <div class="row">
-                              <div class="col-xl-12">
-                                 <p>Helping Them Today</p>
-                                 <h2>
-                                    Help the Poor <br />
-                                    in Need
-                                 </h2>
-                                 <a href="about.blade.php" class="thm-btn"
-                                    >Learn More</a
-                                 >
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="swiper-slide">
-                     <div
-                        class="image-layer"
-                        style="
-                           background-image: url(assets/images/main-slider/slider-1-3.jpg);
-                        "
-                     ></div>
-                     <div class="container">
-                        <div class="swiper-slide__inner">
-                           <div class="row">
-                              <div class="col-xl-12">
-                                 <p>Helping Them Today</p>
-                                 <h2>
-                                    Help the Poor <br />
-                                    in Need
-                                 </h2>
-                                 <a href="about.blade.php" class="thm-btn"
-                                    >Learn More</a
-                                 >
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                   @endforeach
                </div>
                <div class="swiper-pagination" id="main-slider-pagination"></div>
                <div class="main-slider-nav">
@@ -208,136 +159,7 @@
             </div>
          </section>
          <!--Three Icon End-->
-         <!--Welcome One Start-->
-         <section
-            class="welcome-two"
-            style="
-               background-image: url(assets/images/backgrounds/welcome_one_bg.jpg);
-            "
-         >
-            <div
-               class="welcome-one-hands"
-               style="
-                  background-image: url(assets/images/backgrounds/welcome_one_hands.png);
-               "
-            ></div>
-            <div class="container">
-               <div class="row">
-                  <div class="col-xl-6 col-lg-6">
-                     <div class="welcome-one__left">
-                        <div
-                           class="welcome-one__img wow slideInLeft"
-                           data-wow-delay="100ms"
-                        >
-                           <img
-                              src="./assets/images/resources/welcome_one_img_1.jpg"
-                              alt=""
-                           />
-                           <div class="welcome-one__badge">
-                              <img
-                                 src="./assets/images/resources/welcome_one_badge.png"
-                                 alt=""
-                              />
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-xl-6 col-lg-6">
-                     <div class="welcome-one__right">
-                        <div class="block-title text-left">
-                           <h4>Helping Today</h4>
-                           <h2>Our Goal is to Help Poor People</h2>
-                        </div>
-                        <p class="welcome-one__text">
-                           Lorem ipsum dolor sit amet, consectetur notted
-                           adipisicing elit sed do eiusmod tempor incididunt ut
-                           labore et simply free text dolore magna aliqua lonm
-                           andhn.
-                        </p>
-                        <ul class="welcome-one__list list-unstyled">
-                           <li>
-                              <span class="icon-confirmation"></span>Nsectetur
-                              cing do not elit.
-                           </li>
-                           <li>
-                              <span class="icon-confirmation"></span>Suspe
-                              ndisse suscipit sagittis in leo.
-                           </li>
-                           <li>
-                              <span class="icon-confirmation"></span>Entum
-                              estibulum dignissim lipsm posuere.
-                           </li>
-                        </ul>
-                        <div class="welcome-one__campaigns">
-                           <div class="iocn">
-                              <span class="icon-donation"></span>
-                           </div>
-                           <div class="text">
-                              <h2 class="counter">86,700</h2>
-                              <p>Successfull Campaigns</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </section>
-         <!--Welcome One End-->
          <!--Counter One Start-->
-         <section
-            class="counter-one jarallax"
-            data-jarallax
-            data-speed="0.2"
-            data-imgPosition="50% 0%"
-            style="
-               background-image: url(assets/images/backgrounds/counter_one_bg.jpg);
-            "
-         >
-            <div class="container">
-               <ul class="counter-one__box list-unstyled">
-                  <li
-                     class="counter-one__single wow fadeInLeft"
-                     data-wow-delay="100ms"
-                  >
-                     <div class="counter-one__icon">
-                        <i class="icon-campaign"></i>
-                     </div>
-                     <h3 class="counter">4850</h3>
-                     <p class="counter-one__text">Successful Campaigns</p>
-                  </li>
-                  <li
-                     class="counter-one__single wow fadeInLeft"
-                     data-wow-delay="200ms"
-                  >
-                     <div class="counter-one__icon">
-                        <i class="icon-budget"></i>
-                     </div>
-                     <h3 class="counter">3456</h3>
-                     <p class="counter-one__text">Raised Funds</p>
-                  </li>
-                  <li
-                     class="counter-one__single wow fadeInLeft"
-                     data-wow-delay="300ms"
-                  >
-                     <div class="counter-one__icon">
-                        <i class="icon-social-campaign"></i>
-                     </div>
-                     <h3 class="counter">460</h3>
-                     <p class="counter-one__text">Satisfied Donors</p>
-                  </li>
-                  <li
-                     class="counter-one__single wow fadeInLeft"
-                     data-wow-delay="400ms"
-                  >
-                     <div class="counter-one__icon">
-                        <i class="icon-help"></i>
-                     </div>
-                     <h3 class="counter">2060</h3>
-                     <p class="counter-one__text">Best Volunteers</p>
-                  </li>
-               </ul>
-            </div>
-         </section>
          <!--Counter One End-->
 
          <!--We Need Help Start-->
@@ -442,202 +264,6 @@
             </div>
          </section>
          <!--We Need Help End-->
-
-         <!--Testimonials One Start-->
-         <section class="testimonials-one">
-            <div
-               class="testimonials-one-bg"
-               style="
-                  background-image: url({{ asset('assets/images/backgrounds/testimonials_one_bg.jpg') }});
-               "
-            ></div>
-            <div class="testimonials-one__container-box">
-               <div class="block-title text-center">
-                  <h4>Happy People</h4>
-                  <h2>What They Say</h2>
-               </div>
-               <div class="row">
-                  <div class="col-xl-12">
-                     <div
-                        class="thm-swiper__slider swiper-container"
-                        data-swiper-options='{"spaceBetween": 100, "slidesPerView": 4, "autoplay": { "delay": 5000 }, "pagination": {
-                "el": "#testimonials-one__pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "navigation": {
-                "nextEl": ".latest_properties_next",
-                "prevEl": ".latest_properties_prev",
-                "clickable": true
-            },
-            "breakpoints": {
-                "0": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 1
-                },
-                "425": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 1
-                },
-                "575": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 1
-                },
-                "767": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 2
-                },
-                "991": {
-                    "spaceBetween": 20,
-                    "slidesPerView": 3
-                },
-                "1289": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 3
-                },
-                "1440": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 3
-                }
-            }}'
-                     >
-                        <div class="swiper-wrapper">
-                           <div class="swiper-slide">
-                              <!--Testimonials One Single-->
-                              <div class="testimonials-one__single">
-                                 <div class="testimonials-one__quote">
-                                    <img
-                                       src="./assets/images/testimonials/testimonials-one-icon-1.png"
-                                       alt=""
-                                    />
-                                 </div>
-                                 <div class="testimonials-one__text">
-                                    <p>
-                                       There are many variations of passages of
-                                       lorem ipsum available but the majority
-                                       have suffered alteration in some form.
-                                    </p>
-                                    <h3>- Kevin Martin</h3>
-                                 </div>
-                                 <div class="testimonials-one__author-img">
-                                    <img
-                                       src="./assets/images/testimonials/testimonials_one_au_img_1.png"
-                                       alt=""
-                                    />
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="swiper-slide">
-                              <!--Testimonials One Single-->
-                              <div class="testimonials-one__single">
-                                 <div class="testimonials-one__quote">
-                                    <img
-                                       src="./assets/images/testimonials/testimonials-one-icon-1.png"
-                                       alt=""
-                                    />
-                                 </div>
-                                 <div class="testimonials-one__text">
-                                    <p>
-                                       There are many variations of passages of
-                                       lorem ipsum available but the majority
-                                       have suffered alteration in some form.
-                                    </p>
-                                    <h3>- Jessica Brown</h3>
-                                 </div>
-                                 <div class="testimonials-one__author-img">
-                                    <img
-                                       src="./assets/images/testimonials/testimonials_one_au_img_2.png"
-                                       alt=""
-                                    />
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="swiper-slide">
-                              <!--Testimonials One Single-->
-                              <div class="testimonials-one__single">
-                                 <div class="testimonials-one__quote">
-                                    <img
-                                       src="./assets/images/testimonials/testimonials-one-icon-1.png"
-                                       alt=""
-                                    />
-                                 </div>
-                                 <div class="testimonials-one__text">
-                                    <p>
-                                       There are many variations of passages of
-                                       lorem ipsum available but the majority
-                                       have suffered alteration in some form.
-                                    </p>
-                                    <h3>- David Cooper</h3>
-                                 </div>
-                                 <div class="testimonials-one__author-img">
-                                    <img
-                                       src="./assets/images/testimonials/testimonials_one_au_img_3.png"
-                                       alt=""
-                                    />
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="swiper-slide">
-                              <!--Testimonials One Single-->
-                              <div class="testimonials-one__single">
-                                 <div class="testimonials-one__quote">
-                                    <img
-                                       src="./assets/images/testimonials/testimonials-one-icon-1.png"
-                                       alt=""
-                                    />
-                                 </div>
-                                 <div class="testimonials-one__text">
-                                    <p>
-                                       There are many variations of passages of
-                                       lorem ipsum available but the majority
-                                       have suffered alteration in some form.
-                                    </p>
-                                    <h3>- Kevin Martin</h3>
-                                 </div>
-                                 <div class="testimonials-one__author-img">
-                                    <img
-                                       src="./assets/images/testimonials/testimonials_one_au_img_1.png"
-                                       alt=""
-                                    />
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="swiper-slide">
-                              <!--Testimonials One Single-->
-                              <div class="testimonials-one__single">
-                                 <div class="testimonials-one__quote">
-                                    <img
-                                       src="./assets/images/testimonials/testimonials-one-icon-1.png"
-                                       alt=""
-                                    />
-                                 </div>
-                                 <div class="testimonials-one__text">
-                                    <p>
-                                       There are many variations of passages of
-                                       lorem ipsum available but the majority
-                                       have suffered alteration in some form.
-                                    </p>
-                                    <h3>- Jessica Brown</h3>
-                                 </div>
-                                 <div class="testimonials-one__author-img">
-                                    <img
-                                       src="./assets/images/testimonials/testimonials_one_au_img_2.png"
-                                       alt=""
-                                    />
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div
-                        class="swiper-pagination"
-                        id="testimonials-one__pagination"
-                     ></div>
-                  </div>
-               </div>
-            </div>
-         </section>
-         <!--Testimonials One End-->
 
          <!--Join One Start-->
          <section
