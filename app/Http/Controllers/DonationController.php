@@ -260,7 +260,7 @@ class DonationController extends Controller
         return view('public.myDonationRequests', ['requests' => $requests]);
     }
 
-        public function myDonationRequestsDetails($id)
+    public function myDonationRequestsDetails($id)
     {
         $request = DonationRequest::find($id);
         $donor = User::find($request->donation->user_id);

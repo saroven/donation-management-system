@@ -25,7 +25,7 @@
                             </a>
                             <div class="collapse" id="collapseDonations" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" id="donationTypes" href="{{ route('addDonationType') }}">Donation Types</a>
+                                    <a class="nav-link" id="donationTypes" href="{{ route('donationTypes') }}">Donation Types</a>
                                     <a class="nav-link" id="viewDonations" href="{{ route('donations') }}">View Donations</a>
                                 </nav>
                             </div>
