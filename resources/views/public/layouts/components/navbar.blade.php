@@ -21,34 +21,42 @@
                         <div
                            class="main-nav__main-navigation main-nav__main-navigation__three float-left clearfix"
                         >
-                           <ul class="main-nav__navigation-box float-left">
-                              <li id="home">
+                           <ul class="main-nav__navigation-box d-flex flex-row">
+                              <li id="home" >
                                  <a href="{{ route('home') }}">Home</a>
                               </li>
-                              <li id="about">
+                              <li id="about" class="ml-5">
                                  <a href="{{ route('about') }}">About</a>
                               </li>
-                              <li id="contact">
+                              <li id="contact" class="ml-5">
                                  <a href="{{ route('contact') }}">Contact</a>
                               </li>
-                               <li id="donations">
+                               <li id="donations" class="ml-5">
                                  <a href="{{ route('public.donations') }}">Donations</a>
                                </li>
-                               <li id="gallery">
-                                 <a href="#">Gallery</a>
-                               </li>
+
                            </ul>
                         </div>
                         <!-- /.navbar-collapse -->
                         <div class="main-nav__right-three float-right">
                            <div class="main-nav__right__btn-one">
                               <a href="{{ route('donate') }}"
-                                 ><i class="fas fa-heart"></i>Donate</a
+                                 ><i class="fas fa-heart"></i>Donate Now</a
                               >
                            </div>
                            <div class="main-nav__right__icon-cart-box">
                               <div class="dropdown">
-                                  <span class="fa fa-user text-dark" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+
+
+
+                                  <span id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
+                                       @guest
+                                        Anonymous
+                                      @else
+                                          <span class="d-lg-inline d-md-none">{{ auth()->user()->name }}</span>
+                                      @endguest
+                                      <i class="fa fa-user text-dark" style="margin-left: 3px"></i>
+                                  </span>
                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                       @guest
                                         @if (Route::has('login'))
