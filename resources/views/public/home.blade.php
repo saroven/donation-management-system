@@ -81,15 +81,14 @@
                               </div>
                               <div class="feature-one__icon-text-box">
                                  <h4>
-                                    Become <br />
-                                    Donor
+                                    Donate <br> Items
                                  </h4>
                               </div>
                            </div>
-                           <p class="feature-one__icons-single-text">
-                              There are many of lorem Ipsum, but the majori have
-                              suffered alteration in some form.
-                           </p>
+{{--                           <p class="feature-one__icons-single-text">--}}
+{{--                              There are many of lorem Ipsum, but the majori have--}}
+{{--                              suffered alteration in some form.--}}
+{{--                           </p>--}}
                         </div>
                      </div>
                      <div class="col-xl-4 col-lg-4">
@@ -113,15 +112,15 @@
                               </div>
                               <div class="feature-one__icon-text-box">
                                  <h4>
-                                    Quick <br />
-                                    Fundraise
+                                   Money <br />
+                                    Donation
                                  </h4>
                               </div>
                            </div>
-                           <p class="feature-one__icons-single-text">
-                              There are many of lorem Ipsum, but the majori have
-                              suffered alteration in some form.
-                           </p>
+{{--                           <p class="feature-one__icons-single-text">--}}
+{{--                              There are many of lorem Ipsum, but the majori have--}}
+{{--                              suffered alteration in some form.--}}
+{{--                           </p>--}}
                         </div>
                      </div>
                      <div class="col-xl-4 col-lg-4">
@@ -148,10 +147,10 @@
                                  </h4>
                               </div>
                            </div>
-                           <p class="feature-one__icons-single-text">
-                              There are many of lorem Ipsum, but the majori have
-                              suffered alteration in some form.
-                           </p>
+{{--                           <p class="feature-one__icons-single-text">--}}
+{{--                              There are many of lorem Ipsum, but the majori have--}}
+{{--                              suffered alteration in some form.--}}
+{{--                           </p>--}}
                         </div>
                      </div>
                   </div>
@@ -163,7 +162,7 @@
          <!--Counter One End-->
 
          <!--We Need Help Start-->
-         <section class="we-need-help">
+         <section class="we-need-help" style="margin-top: 35px;padding-bottom: 70px;">
             <div class="we-nned-help-bg"></div>
             <div class="container">
                <div class="row">
@@ -291,7 +290,7 @@
          <!--Join One End-->
 
          <!--Newsletter One Start-->
-         <section class="newsletter-one">
+         <section class="newsletter-one" style="padding-bottom: 40px;">
             <div class="container">
                <div class="newsletter-one__inner">
                   <div class="row">
@@ -307,9 +306,11 @@
                      </div>
                      <div class="col-xl-4">
                         <div class="newsletter-one__right">
-                           <a href="#" class="thm-btn"
-                              >Join Now</a
-                           >
+                           @guest
+                               <a href="{{ route('login') }}" class="thm-btn">Join Now</a>
+                            @else
+                               <a href="{{ route('donate') }}" class="thm-btn">Donate Now</a>
+                            @endguest
                         </div>
                      </div>
                   </div>
