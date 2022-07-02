@@ -40,9 +40,16 @@
                         <!-- /.navbar-collapse -->
                         <div class="main-nav__right-three float-right">
                            <div class="main-nav__right__btn-one">
-                              <a href="{{ route('donate') }}"
-                                 ><i class="fas fa-heart"></i>Donate Now</a
-                              >
+
+                               @if(isset(auth()->user()->user_type) && auth()->user()->user_type == 1)
+                                   <a href="{{ route('dashboard') }}">
+                                       Dashboard
+                                   </a>
+                               @else
+                               <a href="{{ route('donate') }}">
+                                  <i class="fas fa-heart"></i>Donate Now
+                              </a>
+                               @endif
                            </div>
                            <div class="main-nav__right__icon-cart-box">
                               <div class="dropdown">
@@ -68,9 +75,6 @@
                                             <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
                                         @endif
                                     @else
-                                        @if(auth()->user()->user_type == 1)
-                                            <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
-                                        @endif
                                         <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
                                         <hr class="dropdown-divider" />
                                         <a class="dropdown-item"
