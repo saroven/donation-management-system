@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Contact;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,9 +17,11 @@ class ContactForm extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $contact;
+
+    public function __construct(Contact $contact)
     {
-        //
+        $this->contact = $contact;
     }
 
     /**

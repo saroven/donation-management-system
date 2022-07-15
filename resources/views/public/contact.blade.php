@@ -10,35 +10,36 @@
                 <div class="row">
                     <div class="col-xl-8">
                         <div class="contact-form">
-                            <form action="inc/sendemail.php" class="contact-form-validated contact-one__form">
+                            <form method="post" action="{{ route('sendContactMessage') }}" class="contact-form-validated contact-one__form">
+                               @csrf
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <div class="contact-form__input-box">
-                                            <input type="text" placeholder="Your name" name="name">
+                                            <input type="text" placeholder="Your name" name="name" required>
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="contact-form__input-box">
-                                            <input type="email" placeholder="Email address" name="email">
+                                            <input type="email" placeholder="Email address" name="email" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <div class="contact-form__input-box">
-                                            <input type="text" placeholder="Phone number" name="phone">
+                                            <input type="text" placeholder="Phone number" name="phone" required>
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="contact-form__input-box">
-                                            <input type="email" placeholder="Subject" name="Subject">
+                                            <input type="text" placeholder="Subject" name="subject" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <div class="contact-form__input-box">
-                                            <textarea name="message" placeholder="Write message"></textarea>
+                                            <textarea name="message" placeholder="Write message" required></textarea>
                                         </div>
                                         <button type="submit" class="thm-btn contact-form__btn">Send Message</button>
                                     </div>

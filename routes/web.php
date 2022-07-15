@@ -42,7 +42,7 @@ Route::controller(DonationController::class)->group(function (){
 //contact controller
 Route::controller(ContactController::class)->group(function (){
     Route::get('/contact', 'showContactPage')->name('contact');
-    Route::post('/contact', 'sendContactForm')->name('sendContactForm');
+    Route::post('/contact', 'sendContactMessage')->name('sendContactMessage');
 });
 
 //dashboard prefix
