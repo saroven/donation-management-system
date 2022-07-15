@@ -57,11 +57,10 @@
 
 
                                   <span id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
-                                       @guest
-                                        Anonymous
-                                      @else
+                                       @auth
                                           <span class="d-lg-inline d-md-none">{{ auth()->user()->name }}</span>
-                                      @endguest
+                                      @endauth
+
                                       <i class="fa fa-user text-dark" style="margin-left: 3px"></i>
                                   </span>
                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
