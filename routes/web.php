@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\EmailController;
@@ -17,7 +18,6 @@ Route::controller(HomeController::class)->group(function (){
     Route::get('/',  'showHome')->name('home');
     Route::get('/home',  'showHome');
     Route::get('/about', 'showAboutPage')->name('about');
-    Route::get('/contact', 'showContactPage')->name('contact');
     Route::get('/profile', 'showProfilePage')->name('profile')->middleware('auth');
     Route::post('/profile', 'updateProfile')->name('updateProfile')->middleware('auth');
 });
@@ -39,6 +39,11 @@ Route::controller(DonationController::class)->group(function (){
 
 });
 
+//contact controller
+Route::controller(ContactController::class)->group(function (){
+    Route::get('/contact', 'showContactPage')->name('contact');
+    Route::post('/contact', 'sendContactForm')->name('sendContactForm');
+});
 
 //dashboard prefix
 Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function (){

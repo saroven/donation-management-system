@@ -44,10 +44,6 @@ class HomeController extends Controller
         return view('public.home');
     }
 
-    public function showContactPage()
-    {
-        return view('public.contact');
-    }
     public function showAboutPage()
     {
         $settings = Setting::first();
