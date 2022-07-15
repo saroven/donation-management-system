@@ -13,6 +13,11 @@
                             <form method="post" action="{{ route('sendContactMessage') }}" class="contact-form-validated contact-one__form">
                                @csrf
                                 <div class="row">
+                                     @if(session()->has('error'))
+                                          <x-alert type="danger" :message="session('error')"></x-alert>
+                                            @elseif(session()->has('success'))
+                                            <x-alert type="success" :message="session('success')"></x-alert>
+                                      @endif
                                     <div class="col-xl-6">
                                         <div class="contact-form__input-box">
                                             <input type="text" placeholder="Your name" name="name" required>

@@ -1,6 +1,10 @@
-<div class="container" style="padding: 1rem; background: #f5f5f5;">
-    <p>Name: {{ $contact->name }}</p>
-    <p>Email: {{ $contact->email }}</p>
-    <p>Mobile: {{ $contact->phone }}</p>
-    <p>Message: {{ $contact->message }}</p>
+<div class="container" style="padding: 1rem;">
+    <p>
+        You've got new mail from {{ $contact->name }} ({{ $contact->email }}) via <b>Contact Form</b>
+    </p>
+
+    <p>Phone Number: {{ $contact->phone }}</p>
+    <p>
+        <strong>Message:</strong> {{ $contact->message }}
+    </p>
 </div>
