@@ -16,14 +16,12 @@
                            <div class="footer-widget__logo">
                               <a href="{{ route('home') }}"
                                  ><img
-                                    src="./assets/images/resources/footer-logo.png"
-                                    alt=""
+                                    src="{{ asset('assets/logo') }}/{{ $siteData['logo'] ?? 'footer-logo.png' }}"
+                                    alt="footer-logo"
+                                    style="height: 60px"
                               /></a>
                            </div>
-                           <p class="footer-widget__text">
-                              Lorem ipsum dolor sit ame consect etur pisicing
-                              elit sed do eiusmod tempor incididunt ut labore.
-                           </p>
+                           <p class="footer-widget__text"></p>
                            <div class="site-footer__social">
                               <a href="#"><i class="fab fa-twitter"></i></a>
                               <a href="#" class="clr-fb"
@@ -81,8 +79,8 @@
                                  </div>
                                  <div class="text">
                                     <p>
-                                       <a href="tel:666-888-0000"
-                                          >666 888 0000</a
+                                       <a href="tel:{{ $siteData['phone'] }}"
+                                          >{{ $siteData['phone'] ?? "no data" }}</a
                                        >
                                     </p>
                                  </div>
@@ -93,8 +91,8 @@
                                  </div>
                                  <div class="text">
                                     <p>
-                                       <a href="mailto:needhelp@company.com"
-                                          >needhelp@company.com</a
+                                       <a href="mailto:{{ $siteData['email']}}"
+                                          >{{ $siteData['email'] ?? "no data" }}</a
                                        >
                                     </p>
                                  </div>
@@ -104,7 +102,7 @@
                                     <i class="fas fa-map-marker-alt"></i>
                                  </div>
                                  <div class="text">
-                                    <p>666 road, broklyn street new york 600</p>
+                                    <p>{{ $siteData['address'] ?? "no data" }}</p>
                                  </div>
                               </li>
                            </ul>
