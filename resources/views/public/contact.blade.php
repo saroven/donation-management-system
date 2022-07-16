@@ -56,20 +56,18 @@
                         <div class="contact-page__info-box">
                             <div class="contact-page__info-box-address">
                                 <h4 class="contact-page__info-box-tilte">Address</h4>
-                                <p class="contact-page__info-box-address-text">220/D-Begum Rokeya Sarani, 1207</p>
+                                <p class="contact-page__info-box-address-text">{{ $siteData['address'] ?? "no data" }}</p>
                             </div>
                             <div class="contact-page__info-box-phone">
                                 <h4 class="contact-page__info-box-tilte">Phone</h4>
                                 <p class="contact-page__info-box-phone-number">
-                                    <a href="tel:0123456789">Local: 666 888 0000</a> <br>
-                                    <a href="tel:0123456789">Mobile: 000 8888 999</a>
+                                    <a href="tel:{{ $siteData['phone'] ?? "no data" }}">Mobile: {{ $siteData['phone'] ?? "no data" }}</a>
                                 </p>
                             </div>
                             <div class="contact-page__info-box-email">
                                 <h4 class="contact-page__info-box-tilte">Email</h4>
                                 <p class="contact-page__info-box-email-address">
-                                    <a href="mailto:needhelp@company.com">needhelp@company.com</a> <br>
-                                    <a href="mailto:inquiry@asting.com">inquiry@asting.com</a>
+                                    <a href="mailto:{{ $siteData['email'] ?? "no data" }}">{{ $siteData['email'] ?? "no data" }}</a> <br>
                                 </p>
                             </div>
                             <div class="contact-page__info-box-follow">
