@@ -7266,6 +7266,9 @@ li {
 .profile-form-error-message{
     border:2px solid red !important;
 }
+.is-invalid{
+    border:2px solid red !important;
+}
 .invalid-feedback{
     display: block;
     padding-left: 35px;

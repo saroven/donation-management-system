@@ -20,31 +20,56 @@
                                       @endif
                                     <div class="col-xl-6">
                                         <div class="contact-form__input-box">
-                                            <input type="text" placeholder="Your name" name="name" required>
+                                            <input type="text" class="@error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Your name" name="name" required>
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="contact-form__input-box">
-                                            <input type="email" placeholder="Email address" name="email" required>
+                                            <input type="email" class="@error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Email address" name="email" required>
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <div class="contact-form__input-box">
-                                            <input type="text" placeholder="Phone number" name="phone" required>
+                                            <input type="text" class="@error('phone') is-invalid @enderror" value="{{ old('phone') }}" placeholder="Phone number" name="phone" required>
+                                            @error('phone')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="contact-form__input-box">
-                                            <input type="text" placeholder="Subject" name="subject" required>
+                                            <input type="text" class="@error('subject') is-invalid @enderror" value="{{ old('subject') }}" placeholder="Subject" name="subject" required>
+                                            @error('subject')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <div class="contact-form__input-box">
-                                            <textarea name="message" placeholder="Write message" required></textarea>
+                                            <textarea name="message" class="@error('message') is-invalid @enderror" placeholder="Write message" required>{{ old('message') }}</textarea>
+                                            @error('message')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                         <button type="submit" class="thm-btn contact-form__btn">Send Message</button>
                                     </div>
