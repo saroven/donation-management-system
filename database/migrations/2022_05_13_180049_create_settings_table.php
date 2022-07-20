@@ -21,9 +21,6 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('logo')->nullable();
             $table->string('icon')->nullable();
-            $table->string('about_title')->nullable();
-            $table->string('about_content')->nullable();
-            $table->string('about_img')->nullable();
             $table->string('site_language')->nullable();
             $table->string('user_registration')->default('on');
             $table->timestamps();
