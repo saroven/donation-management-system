@@ -54,8 +54,10 @@
         </section>
         <!--CTA Two End-->
         @endguest
+        @if($page->title == 'About Us')
        <script>
           let navItem = document.getElementById('about');
           navItem.classList.add('current');
        </script>
+    @endif
 @endsection
