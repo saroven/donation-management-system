@@ -39,6 +39,15 @@
                       @enderror
                   </div>
                     <div class="form-group">
+                        <label for="slug"> Slug</label>
+                        <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ $page->slug ?? old('slug') }}" required autocomplete="slug" id="slug">
+                        @error('slug')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                          @enderror
+                    </div>
+                    <div class="form-group">
                         <textarea class="form-control" name="content" id="summernote"></textarea>
                     </div>
                   <div class="form-group">
@@ -71,7 +80,7 @@
         $(document).ready(function() {
             $('#summernote').summernote({
                 placeholder: 'Write your page here...',
-                height: 300,
+                height: 200,
                 minHeight: null,
                 maxHeight: null,
                 focus: false,
