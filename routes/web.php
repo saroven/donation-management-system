@@ -11,10 +11,6 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/send-email', [EmailController::class, 'sendEmail']);
-
-
 Route::controller(HomeController::class)->group(function (){
     Route::get('/',  'showHome')->name('home');
     Route::get('/home',  'showHome');
