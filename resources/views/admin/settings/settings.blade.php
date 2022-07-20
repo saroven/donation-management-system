@@ -50,33 +50,6 @@
                             </span>
                       @enderror
                   </div>
-                    <div class="form-group">
-                    <label for="about_title">About Title</label>
-                    <input type="text" name="about_title" class="form-control @error('about_title') is-invalid @enderror" value="{{ $setting->about_title ?? old('about_title') }}" required autocomplete="about_title" id="about_title" placeholder="About Title">
-                    @error('about_title')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                      @enderror
-                  </div>
-                    <div class="form-group">
-                    <label for="about_content">About Content</label>
-                        <textarea name="about_content" class="form-control @error('about_content') is-invalid @enderror" id="about_content">{{ $setting->about_content ?? old('about_content') }}</textarea>
-                        @error('about_content')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                      @enderror
-                  </div>
-                  <div class="form-group">
-                    <label for="about_img">About Image</label> <br>
-                      @php($about_img = $setting->about_img ?? null)
-                      @if($about_img) <img src="{{ asset('assets/about_img/'.$setting->about_img) }}" height="120px" width="250px" alt="about_img"> @endif
-                      <input type="file" name="about_img" class="form-control @error('about_img') is-invalid @enderror" id="about_img ">
-                          @error('about_img')
-                          <span class="text-danger" style="font-weight: bolder; font-size: 80%"><strong>{{$errors->first('about_img')}}</strong> </span>
-                          @enderror
-                  </div>
 
                     <div class="form-group">
                     <label for="logo">Site Logo</label> <br>
