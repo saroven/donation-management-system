@@ -20,6 +20,7 @@ class PageController extends Controller
             //validate the request data
             $request->validate([
                 'title' => 'required|max:255',
+                'slug' => 'required|max:255',
                 'content' => 'required',
                 'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
