@@ -16,8 +16,9 @@ class DonationTypeSeeder extends Seeder
      */
     public function run()
     {
-
-        if (DonationTypes::all()) {
+        //donation type seeder
+        $donationType = DonationTypes::all()->count();
+        if ($donationType != 0) {
             $this->command->info('DonationType already seeded');
             return;
         } else {
