@@ -48,12 +48,12 @@
                           @enderror
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" name="content" id="summernote"></textarea>
+                        <textarea class="form-control" name="content" id="summernote">{{ $page->content }}</textarea>
                     </div>
                   <div class="form-group">
                     <label for="image"> Image</label> <br>
                       @php($page_img = $page->image ?? null)
-                      @if($page_img) <img src="{{ asset('assets/pageImage/'.$page->image) }}" height="120px" width="250px" alt="image"> @endif
+                      @if($page_img) <img src="{{ asset('assets/pageImages/'.$page->image) }}" height="120px" width="250px" alt="image"> @endif
                       <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="image ">
                           @error('image')
                           <span class="text-danger" style="font-weight: bolder; font-size: 80%"><strong>{{$errors->first('image')}}</strong> </span>
@@ -79,7 +79,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#summernote').summernote({
-                placeholder: 'Write your page here...',
+                placeholder: 'Write your page content here...',
                 height: 200,
                 minHeight: null,
                 maxHeight: null,
