@@ -16,17 +16,25 @@ class DonationTypeSeeder extends Seeder
      */
     public function run()
     {
-        DonationTypes::create(
-            ['name' => 'Food Donation']
-        );
-        DonationTypes::create(
-            ['name' => 'Cloth Donation']
-        );
-        DonationTypes::create(
-            ['name' => 'Books Donation']
-        );
-        DonationTypes::create(
-            ['name' => 'Footwear Donation']
-        );
+
+        if (DonationTypes::all()) {
+            $this->command->info('DonationType already seeded');
+            return;
+        } else {
+            $this->command->info('Seeding DonationType table');
+
+                DonationTypes::create(
+                    ['name' => 'Food Donation']
+                );
+                DonationTypes::create(
+                    ['name' => 'Cloth Donation']
+                );
+                DonationTypes::create(
+                    ['name' => 'Books Donation']
+                );
+                DonationTypes::create(
+                    ['name' => 'Footwear Donation']
+                );
+        }
     }
 }

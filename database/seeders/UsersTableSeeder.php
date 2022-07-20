@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use DB;
 use Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,13 +17,23 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'saroven@yahoo.com',
-            'mobile' => '01800000000',
-            'gender' => 'male',
-            'address' => 'Dhaka',
-            'password' => Hash::make('123456'),
-        ]);
+
+
+        $user = User::where('email', 'saroven@yahoo.com')->first();
+
+        if ($user) {
+            $this->command->info('Users table already seeded');
+            return;
+        }else{
+            $this->command->info('Seeding Users table');
+            User::create([
+                'name' => 'Admin',
+                'email' => 'saroven@yahoo.com',
+                'mobile' => '01800000000',
+                'gender' => 'male',
+                'address' => 'Dhaka',
+                'password' => Hash::make('123456'),
+            ]);
+        }
     }
 }
