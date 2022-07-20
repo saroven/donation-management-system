@@ -18,7 +18,6 @@ Route::get('/send-email', [EmailController::class, 'sendEmail']);
 Route::controller(HomeController::class)->group(function (){
     Route::get('/',  'showHome')->name('home');
     Route::get('/home',  'showHome');
-    Route::get('/about', 'showAboutPage')->name('about');
     Route::get('/profile', 'showProfilePage')->name('profile')->middleware('auth');
     Route::post('/profile', 'updateProfile')->name('updateProfile')->middleware('auth');
 });

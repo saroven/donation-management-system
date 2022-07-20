@@ -39,16 +39,6 @@ class HomeController extends Controller
         $sliders = Slider::all();
         return view('public.home', ['sliders'=> $sliders]);
     }
-    public function showAbout()
-    {
-        return view('public.home');
-    }
-
-    public function showAboutPage()
-    {
-        $settings = Setting::first();
-        return view('public.about', ['setting' => $settings]);
-    }
     public function showProfilePage()
     {
         $totalDonations = User::find(auth()->user()->id)->donations;
