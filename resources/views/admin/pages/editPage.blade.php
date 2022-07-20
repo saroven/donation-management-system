@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group">
                         <label for="content"> Content</label> <span class="text-danger">*</span>
-                        <textarea class="form-control @error('content') is-invalid @enderror" name="content" id="summernote">{{ $page->content }}</textarea>
+                        <textarea class="form-control @error('content') is-invalid @enderror" name="content" id="summernote" required autocomplete="content">{{ $page->content }}</textarea>
                         @error('content')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

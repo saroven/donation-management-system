@@ -15,6 +15,39 @@ class PageController extends Controller
 
     public function updatePage(Request $request, $id) //update page with id
     {
-        return 'update page with id: '.$id;
+        $page = Page::find($id);
+        if ($page != null) {
+            //validate the request data
+            $request->validate([
+                'title' => 'required|max:255',
+                'content' => 'required',
+                'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $page->title = $request->title; //update the title
+            $page->content = $request->content; //update the content
+
+            //page image upload
+            if ($request->hasFile('image')) {
+                if ($page->image != null) {
+                    //delete the old image
+                    $image_path = public_path() . '/assets/pageImages/' . $page->image;
+                    if (file_exists($image_path)) {
+                        unlink($image_path);
+                    }
+                }
+                //upload the new image
+                $image = $request->file('image');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('assets/pageImages'), $imageName);
+                $page->image = $imageName;
+            }
+
+            $page->save(); //save the page
+
+            return redirect()->back()->with('success', 'Page updated successfully');
+        } else {
+            return redirect()->route('dashboard')->with('error', 'Page not found');
+        }
     }
 }
