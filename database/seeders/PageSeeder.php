@@ -16,7 +16,8 @@ class PageSeeder extends Seeder
     public function run()
     {
         //page seeder
-        if (Page::all()){
+        $page = Page::all()->count();
+        if ($page != 0) {
             $this->command->info('Pages table already seeded');
             return;
         }else{

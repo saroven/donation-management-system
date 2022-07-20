@@ -29,6 +29,24 @@
                                     <a class="nav-link" id="viewDonations" href="{{ route('donations') }}">View Donations</a>
                                 </nav>
                             </div>
+
+                            <a id="pages" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-pager"></i></div>
+                                Pages
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    @php($pages = \App\Models\Page::all())
+                                    @forelse($pages as $page)
+                                        <a class="nav-link" id="page{{ $page->id }}" href="{{ route('page', $page->id) }}">{{ $page->title }}</a>
+                                    @empty
+                                        <a class="nav-link" id="page" href="{{ route('page') }}">No Pages</a>
+                                    @endforelse
+                                </nav>
+                            </div>
+
+
                             <div class="sb-sidenav-menu-heading">Controls</div>
                             <a class="nav-link" id="settings" href="{{ route('settings') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>

@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UsersController;
@@ -46,13 +47,13 @@ Route::controller(ContactController::class)->group(function (){
 });
 
 //dashboard prefix
-Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
+Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function () {
     //dashboard controller for the admins
-    Route::controller(DashboardController::class)->group(function (){
+    Route::controller(DashboardController::class)->group(function () {
         Route::get('/', 'showDashboard')->name('dashboard');
     });
-        //donation controller group for admins
-    Route::controller(DonationController::class)->group(function (){
+    //donation controller group for admins
+    Route::controller(DonationController::class)->group(function () {
         Route::get('/donations', 'showDonations')->name('donations');
         Route::get('/donation/{id}', 'donationDetails')->name('donation.details');
         Route::post('/donation/{id}/update', 'updateDonationDetails')->name('updateDonationDetails');
@@ -66,7 +67,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
 
     });
 //user controller group for admins
-    Route::controller(UsersController::class)->group(function (){
+    Route::controller(UsersController::class)->group(function () {
         Route::get('/users', 'showUsers')->name('users');
         Route::get('/fetch-users', 'fetchUsers')->name('fetchUsers');
         Route::get('/user/{id}', 'getSingleUser')->name('getSingleUser');
@@ -76,19 +77,25 @@ Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
         Route::delete('/deleteUser/{id}', 'deleteUser')->name('deleteUser');
     });
 
-    Route::controller(SettingController::class)->group(function (){
-    Route::get('/settings',  'showSettingsPage')->name('settings');
-    Route::post('/settings/update',  'update')->name('settings.update');
-});
+    Route::controller(SettingController::class)->group(function () {
+        Route::get('/settings', 'showSettingsPage')->name('settings');
+        Route::post('/settings/update', 'update')->name('settings.update');
+    });
 
-    Route::controller(SliderController::class)->group(function (){
-    Route::get('/sliders',  'viewSliders')->name('sliders');
-    Route::get('/slider/add',  'addSlider')->name('sliders.add');
-    Route::post('/slider/add',  'insertSlider')->name('sliders.insert');
-    Route::get('/slider/{id}/edit',  'editSlider')->name('sliders.edit');
-    Route::post('/slider/{id}/update',  'updateSlider')->name('sliders.update');
-    Route::get('/slider/{id}/delete',  'deleteSlider')->name('sliders.delete');
-});
+    Route::controller(SliderController::class)->group(function () {
+        Route::get('/sliders', 'viewSliders')->name('sliders');
+        Route::get('/slider/add', 'addSlider')->name('sliders.add');
+        Route::post('/slider/add', 'insertSlider')->name('sliders.insert');
+        Route::get('/slider/{id}/edit', 'editSlider')->name('sliders.edit');
+        Route::post('/slider/{id}/update', 'updateSlider')->name('sliders.update');
+        Route::get('/slider/{id}/delete', 'deleteSlider')->name('sliders.delete');
+    });
+    Route::controller(PageController::class)->group(function () {
+        Route::get('/pages', 'viewPages')->name('pages');  //view all pages
+        Route::get('page/{id}', 'viewPage')->name('page.view'); //view single page
+        Route::get('/page/{id}/edit', 'editPage')->name('pages.edit'); //edit page
+        Route::post('/page/{id}/update', 'updatePage')->name('pages.update'); //update page
+    });
 });
 
 
