@@ -30,7 +30,7 @@
                   @csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="title"> Title</label>
+                    <label for="title"> Title</label> <span class="text-danger">*</span>
                     <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ $page->title ?? old('title') }}" required autocomplete="title" id="title">
                     @error('title')
                             <span class="invalid-feedback" role="alert">
@@ -39,7 +39,7 @@
                       @enderror
                   </div>
                     <div class="form-group">
-                        <label for="slug"> Slug</label>
+                        <label for="slug"> Slug</label> <span class="text-danger">*</span>
                         <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ $page->slug ?? old('slug') }}" required autocomplete="slug" id="slug">
                         @error('slug')
                                 <span class="invalid-feedback" role="alert">
@@ -48,7 +48,13 @@
                           @enderror
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" name="content" id="summernote">{{ $page->content }}</textarea>
+                        <label for="content"> Content</label> <span class="text-danger">*</span>
+                        <textarea class="form-control @error('content') is-invalid @enderror" name="content" id="summernote">{{ $page->content }}</textarea>
+                        @error('content')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                          @enderror
                     </div>
                   <div class="form-group">
                     <label for="image"> Image</label> <br>
