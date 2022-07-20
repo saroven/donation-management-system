@@ -91,9 +91,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function () 
         Route::get('/slider/{id}/delete', 'deleteSlider')->name('sliders.delete');
     });
     Route::controller(PageController::class)->group(function () {
-        Route::get('/pages', 'viewPages')->name('pages');  //view all pages
         Route::get('page/{id}', 'viewPage')->name('page.view'); //view single page
-        Route::get('/page/{id}/edit', 'editPage')->name('pages.edit'); //edit page
         Route::post('/page/{id}/update', 'updatePage')->name('pages.update'); //update page
     });
 });
