@@ -96,6 +96,8 @@ Route::prefix('/dashboard')->middleware(['auth', 'isAdmin'])->group(function () 
     });
 });
 
+//view page as public by slug
+Route::get('/{slug}', [PageController::class, 'viewPagePublic'])->name('page.public');
 
 Auth::routes();
 

@@ -18,7 +18,7 @@
     <main>
         <div class="container-fluid px-4">
             <div class="d-flex justify-content-between">
-                <h1 class="mt-4">{{ $page->title }}</h1> <h4><a class="btn btn-primary mt-5" href="/">View as Public</a></h4>
+                <h1 class="mt-4">{{ $page->title }}</h1> <h4><a class="btn btn-primary mt-5" target="_blank" href="{{ route('page.public', $page->slug) }}">View as Public</a></h4>
             </div>
             @if(session()->has('error'))
                   <x-alert type="danger" :message="session('error')"/>

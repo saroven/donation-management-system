@@ -51,4 +51,15 @@ class PageController extends Controller
             return redirect()->route('dashboard')->with('error', 'Page not found');
         }
     }
+
+    //page view as public
+    public function viewPagePublic($slug) //view by slug
+    {
+        $page = Page::where('slug', $slug)->first(); //get the page by slug
+        if ($page != null) { //if page exists
+            return view('public.pages.viewPages', ['page' => $page]);
+        } else {
+            return redirect()->route('home')->with('error', 'Page not found');
+        }
+    }
 }
