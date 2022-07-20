@@ -39,9 +39,9 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     @php($pages = \App\Models\Page::all())
                                     @forelse($pages as $page)
-                                        <a class="nav-link" id="page{{ $page->id }}" href="{{ route('page', $page->id) }}">{{ $page->title }}</a>
+                                        <a class="nav-link" id="page{{ $page->id }}" href="{{ route('page.view', $page->id) }}">{{ $page->title }}</a>
                                     @empty
-                                        <a class="nav-link" id="page" href="{{ route('page') }}">No Pages</a>
+                                        <a class="nav-link" id="page" href="{{ route('pages') }}">No Pages</a>
                                     @endforelse
                                 </nav>
                             </div>
