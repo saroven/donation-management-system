@@ -20,7 +20,6 @@ class UsersTableSeeder extends Seeder
 
 
         $user = User::all()->count();
-
         if ($user != 0) {
             $this->command->info('Users table already seeded');
             return;
@@ -38,16 +37,6 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('123456'),
             ]);
             //create admin user
-            User::create([
-                'name' => 'admin',
-                'email' => 'admin@gmail.com',
-                'mobile' => '01800000000',
-                'gender' => 'male',
-                'address' => 'dhaka',
-                'user_type' => 1,
-                'password' => Hash::make('123456'),
-            ]);
-
             User::create([
                 'name' => 'admin',
                 'email' => 'admin@gmail.com',
