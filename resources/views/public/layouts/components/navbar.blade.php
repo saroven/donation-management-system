@@ -26,7 +26,7 @@
                                  <a href="{{ route('home') }}">Home</a>
                               </li>
                               <li id="about" class="ml-5">
-                                 <a href="/about-us">About</a>
+                                 <a href="/page/about-us">About</a>
                               </li>
                               <li id="contact" class="ml-5">
                                  <a href="{{ route('contact') }}">Contact</a>
