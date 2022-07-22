@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('donation_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();;
-            $table->boolean('status')->default(true);
+            $table->string('title')->unique();
+            $table->string('description')->nullable();
+            $table->string('image')->nullable();
+            $table->integer('status')->default(1)->comment("1=active;0=inactive");
             $table->timestamps();
         });
     }
