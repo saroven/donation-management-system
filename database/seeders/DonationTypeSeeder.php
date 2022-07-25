@@ -25,16 +25,16 @@ class DonationTypeSeeder extends Seeder
             $this->command->info('Seeding DonationType table');
 
                 DonationTypes::create(
-                    ['name' => 'Food Donation']
+                    ['title' => 'Food Donation']
                 );
                 DonationTypes::create(
-                    ['name' => 'Cloth Donation']
+                    ['title' => 'Cloth Donation']
                 );
                 DonationTypes::create(
-                    ['name' => 'Books Donation']
+                    ['title' => 'Books Donation']
                 );
                 DonationTypes::create(
-                    ['name' => 'Footwear Donation']
+                    ['title' => 'Footwear Donation']
                 );
         }
     }
