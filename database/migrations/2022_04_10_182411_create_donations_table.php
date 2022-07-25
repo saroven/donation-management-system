@@ -18,14 +18,15 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->unsignedBigInteger('donation_type_id');
             $table->string('donation_name');
+            $table->string('donation_amount');
+            $table->string('donation_condition')->nullable()->comment("used,fresh");
+            $table->string('used_time')->nullable();
             $table->string('donation_quantity');
             $table->string('donation_weight')->nullable();
             $table->string('collection_address');
             $table->string('note')->nullable();
             $table->integer('status')->default(false);
             $table->timestamps();
-
-//            $table->foreign('donation_type_id')->references('id')->on('donation_types')->onDelete('cascade');
         });
     }
 
