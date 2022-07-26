@@ -79,7 +79,7 @@
                                  </div>
                                  <div class="text">
                                     <p>
-                                       <a href="tel:{{ $siteData['phone'] }}"
+                                       <a href="tel:{{ $siteData['phone'] ?? '' }}"
                                           >{{ $siteData['phone'] ?? "no data" }}</a
                                        >
                                     </p>
@@ -91,7 +91,7 @@
                                  </div>
                                  <div class="text">
                                     <p>
-                                       <a href="mailto:{{ $siteData['email']}}"
+                                       <a href="mailto:{{ $siteData['email'] ?? ''}}"
                                           >{{ $siteData['email'] ?? "no data" }}</a
                                        >
                                     </p>
