@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->unsignedBigInteger('donation_type_id');
             $table->string('donation_name');
-            $table->string('donation_amount');
+            $table->string('donation_amount')->nullable();
             $table->string('donation_condition')->nullable()->comment("used,fresh");
             $table->string('used_time')->nullable();
             $table->string('donation_quantity');
